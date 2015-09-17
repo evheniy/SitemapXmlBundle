@@ -1,0 +1,23 @@
+{
+    "name": "evheniy/simple-sitemap-xml-bundle",
+    "description": "The SimpleSitemapXmlBundle adds the ability to generate sitemap.xml file to your application.",
+    "keywords": ["Simple", "sitemap.xml", "Symfony", "Sitemap", "Google standards"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name":     "evheniy",
+            "homepage": "https://github.com/evheniy"
+        }
+    ],
+    "require": {
+        "php":             ">=5.3.0",
+        "symfony/symfony": ">=2.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "Evheniy\\SimpleSitemapXmlBundle": ""
+        }
+    },
+    "target-dir" : "Evheniy/SimpleSitemapXmlBundle"
+}
