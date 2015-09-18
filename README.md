@@ -1,4 +1,4 @@
-SimpleSitemapXmlBundle
+SitemapXmlBundle
 =================
 
 This bundle provides sitemap.xml generator for Symfony2
@@ -6,11 +6,11 @@ This bundle provides sitemap.xml generator for Symfony2
 Installation
 ------------
 
-    $ composer require evheniy/simple-sitemap-xml-bundle "1.*"
+    $ composer require evheniy/sitemap-xml-bundle "1.*"
 
 Or add to composer.json
 
-    "evheniy/simple-sitemap-xml-bundle": "1.*"
+    "evheniy/sitemap-xml-bundle": "1.*"
 
 AppKernel:
 
@@ -18,7 +18,7 @@ AppKernel:
         {
             $bundles = array(
                 ...
-                new Evheniy\SimpleSitemapXmlBundle\SimpleSitemapXmlBundle(),
+                new Evheniy\SitemapXmlBundle\SitemapXmlBundle(),
             );
             ...
 
@@ -27,7 +27,7 @@ AppKernel:
 
 The last step
 
-    app/console manifest:dump
+    app/console sitemap:dump
 
 Documentation
 -------------
@@ -45,7 +45,7 @@ This bundle is under the [MIT][3] license.
 
 [Build a sitemap][4]
 
-[1]:  http://makedev.org/articles/symfony/bundles/simple_sitemap_xml_bundle.html
+[1]:  http://makedev.org/articles/symfony/bundles/sitemap_xml_bundle.html
 [2]:  http://makedev.org/sitemap.xml
-[3]:  https://github.com/evheniy/SimpleSitemapXmlBundle/blob/master/Resources/meta/LICENSE
+[3]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/meta/LICENSE
 [4]:  https://support.google.com/webmasters/answer/183668

@@ -11,7 +11,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="Symfony SimpleSitemapXmlBundle Test Suite">
+        <testsuite name="Symfony SitemapXmlBundle Test Suite">
             <directory>./Tests</directory>
         </testsuite>
     </testsuites>

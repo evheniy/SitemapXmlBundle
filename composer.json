@@ -1,7 +1,7 @@
 {
-    "name": "evheniy/simple-sitemap-xml-bundle",
-    "description": "The SimpleSitemapXmlBundle adds the ability to generate sitemap.xml file to your application.",
-    "keywords": ["Simple", "sitemap.xml", "Symfony", "Sitemap", "Google standards"],
+    "name": "evheniy/sitemap-xml-bundle",
+    "description": "The SitemapXmlBundle adds the ability to generate sitemap.xml file to your application.",
+    "keywords": ["sitemap.xml", "Symfony", "Sitemap", "Google standards"],
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
@@ -16,8 +16,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Evheniy\\SimpleSitemapXmlBundle": ""
+            "Evheniy\\SitemapXmlBundle": ""
         }
     },
-    "target-dir" : "Evheniy/SimpleSitemapXmlBundle"
+    "target-dir" : "Evheniy/SitemapXmlBundle"
 }
