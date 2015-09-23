@@ -3,10 +3,10 @@
 namespace Evheniy\SitemapXmlBundle\Collection;
 
 /**
- * Class AbstractCollection
+ * Class LocationCollection
  * @package Evheniy\SitemapXmlBundle\Collection
  */
-abstract class AbstractCollection extends \SplObjectStorage
+class LocationCollection extends AbstractCollection
 {
 
 }
