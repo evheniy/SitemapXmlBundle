@@ -10,6 +10,9 @@ use Evheniy\SitemapXmlBundle\Entity\AbstractEntity;
  */
 abstract class AbstractDumpDecorator extends AbstractEntity
 {
+    /**
+     * @return mixed
+     */
     abstract public function dump();
     //TODO: required fields check
 }
