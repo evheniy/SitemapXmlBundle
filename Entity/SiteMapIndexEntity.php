@@ -2,6 +2,8 @@
 
 namespace Evheniy\SitemapXmlBundle\Entity;
 
+use Evheniy\SitemapXmlBundle\Collection\SiteMapCollection;
+
 /**
  * Class SiteMapIndexEntity
  * @package Evheniy\SitemapXmlBundle\Entity
@@ -10,57 +12,25 @@ namespace Evheniy\SitemapXmlBundle\Entity;
 class SiteMapIndexEntity extends AbstractEntity
 {
     /**
-     * @var SiteMapEntity
+     * @var SiteMapCollection
      */
-    protected $siteMapEntity;
-
-    /**
-     * @var string
-     */
-    protected $loc;
-
-    /**
-     * @var \DateTime
-     */
-    protected $lastmod;
+    protected $siteMapCollection;
 
     /**
      *
      */
     public function __construct()
     {
-        $this->lastmod = new \DateTime();
+        $this->siteMapCollection = new SiteMapCollection();
     }
 
     /**
-     * @param SiteMapEntity $siteMap
+     * @param SiteMapEntity $siteMapEntity
      * @return $this
      */
-    public function setSiteMap(SiteMapEntity $siteMap)
+    public function addSiteMap(SiteMapEntity $siteMapEntity)
     {
-        $this->siteMapEntity = $siteMap;
-
-        return $this;
-    }
-
-    /**
-     * @param string $location
-     * @return $this
-     */
-    public function setLocation($location)
-    {
-        $this->loc = $location;
-
-        return $this;
-    }
-
-    /**
-     * @param \DateTime $dateTime
-     * @return $this
-     */
-    public function setLastmod(\DateTime $dateTime)
-    {
-        $this->lastmod = $dateTime;
+        $this->siteMapCollection->attach($siteMapEntity);
 
         return $this;
     }

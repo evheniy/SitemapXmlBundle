@@ -16,12 +16,21 @@ class SiteMapEntity extends AbstractEntity
      * @var LocationCollection
      */
     protected $locationCollection;
+    /**
+     * @var string
+     */
+    protected $loc;
+    /**
+     * @var \DateTime
+     */
+    protected $lastmod;
 
     /**
      *
      */
     public function __construct()
     {
+        $this->lastmod = new \DateTime();
         $this->locationCollection = new LocationCollection();
     }
 
@@ -36,6 +45,28 @@ class SiteMapEntity extends AbstractEntity
             throw new MaxCountLocationException();
         }
         $this->locationCollection->attach($locationEntity);
+
+        return $this;
+    }
+
+    /**
+     * @param string $location
+     * @return $this
+     */
+    public function setLocation($location)
+    {
+        $this->loc = $location;
+
+        return $this;
+    }
+
+    /**
+     * @param \DateTime $dateTime
+     * @return $this
+     */
+    public function setLastmod(\DateTime $dateTime)
+    {
+        $this->lastmod = $dateTime;
 
         return $this;
     }
