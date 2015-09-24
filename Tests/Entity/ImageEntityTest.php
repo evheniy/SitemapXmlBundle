@@ -122,7 +122,7 @@ class ImageEntityTest extends \PHPUnit_Framework_TestCase
     {
         $testValue = 'testTitle';
         $this->imageEntity->setTitle($testValue);
-        $title = $this->reflectionClass->getProperty('geoLocation');
+        $title = $this->reflectionClass->getProperty('title');
         $title->setAccessible(true);
         $this->assertEquals($title->getValue($this->imageEntity), $testValue);
         $this->assertEquals($this->imageEntity->getTitle(), $testValue);
