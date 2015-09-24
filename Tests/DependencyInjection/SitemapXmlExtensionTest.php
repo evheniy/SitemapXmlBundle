@@ -19,6 +19,7 @@ class SitemapXmlExtensionTest extends \PHPUnit_Framework_TestCase
      * @var ContainerBuilder
      */
     private $container;
+
     /**
      *
      */
@@ -28,6 +29,7 @@ class SitemapXmlExtensionTest extends \PHPUnit_Framework_TestCase
         $this->container = new ContainerBuilder();
         $this->container->registerExtension($this->extension);
     }
+
     /**
      * Test empty config
      */
@@ -40,6 +42,7 @@ class SitemapXmlExtensionTest extends \PHPUnit_Framework_TestCase
             $this->container->get('sitemap')
         );
     }
+
     /**
      *
      */
