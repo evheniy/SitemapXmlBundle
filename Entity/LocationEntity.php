@@ -156,7 +156,7 @@ class LocationEntity extends AbstractEntity
     /**
      * @return bool
      */
-    public function getIsMobile()
+    public function isMobile()
     {
 
         return $this->isMobile;
@@ -166,7 +166,7 @@ class LocationEntity extends AbstractEntity
      * @param bool|false $isMobile
      * @return $this
      */
-    public function setIsMobile($isMobile = false)
+    public function setMobile($isMobile = false)
     {
         $this->isMobile = $isMobile;
 
