@@ -18,6 +18,7 @@ class SiteMapEntity extends Entity implements ValidateEntityInterface
     const MAX_COUNT_LOCATIONS_FOR_SITEMAP = 50000;
 
     /**
+     * @return $this
      * @throws ValidateEntityException
      */
     public function validate()
