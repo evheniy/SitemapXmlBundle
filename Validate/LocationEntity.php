@@ -20,6 +20,7 @@ class LocationEntity extends Entity implements ValidateEntityInterface
     const MAX_COUNT_IMAGES_FOR_LOCATION = 1000;
 
     /**
+     * @return $this
      * @throws ValidateEntityException
      */
     public function validate()
@@ -54,6 +55,7 @@ class LocationEntity extends Entity implements ValidateEntityInterface
      */
     protected function isValidLastmod()
     {
+
         return $this->lastmod instanceof \DateTime;
     }
 
@@ -62,6 +64,7 @@ class LocationEntity extends Entity implements ValidateEntityInterface
      */
     protected function isValidChangefreq()
     {
+
         return in_array($this->changefreq, array('always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never'));
     }
 
@@ -70,6 +73,7 @@ class LocationEntity extends Entity implements ValidateEntityInterface
      */
     protected function isValidPriority()
     {
+
         return ($this->priority >= 0.0) && ($this->priority <= 1.0);
     }
 }
