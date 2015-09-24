@@ -12,10 +12,23 @@ use Evheniy\SitemapXmlBundle\Exception\ValidateEntityException;
 class SiteMapIndexEntity extends Entity implements ValidateEntityInterface
 {
     /**
+     * @return $this
      * @throws ValidateEntityException
      */
     public function validate()
     {
-        throw new ValidateEntityException();
+        foreach ($this->siteMapCollection as $siteMapEntity) {
+            $loc = $siteMapEntity->getLoc();
+            $lastmod = $siteMapEntity->getLastmod();
+            if (empty($loc)) {
+                throw new ValidateEntityException('"Loc" field must be set!');
+            }
+            if (empty($lastmod)) {
+                throw new ValidateEntityException('"Lastmod" field must be set!');
+            }
+            $siteMapEntity->validate();
+        }
+
+        return $this;
     }
 }

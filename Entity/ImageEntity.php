@@ -31,6 +31,15 @@ class ImageEntity extends AbstractEntity
     protected $license;
 
     /**
+     * @return string
+     */
+    public function getLocation()
+    {
+
+        return $this->loc;
+    }
+
+    /**
      * @param string $location
      * @return $this
      */
@@ -42,6 +51,15 @@ class ImageEntity extends AbstractEntity
     }
 
     /**
+     * @return string
+     */
+    public function getCaption()
+    {
+
+        return $this->caption;
+    }
+
+    /**
      * @param string $caption
      * @return $this
      */
@@ -50,6 +68,15 @@ class ImageEntity extends AbstractEntity
         $this->caption = $caption;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGeoLocation()
+    {
+
+        return $this->geoLocation;
     }
 
     /**
@@ -65,6 +92,15 @@ class ImageEntity extends AbstractEntity
     }
 
     /**
+     * @return string
+     */
+    public function getTitle()
+    {
+
+        return $this->title;
+    }
+
+    /**
      * @param string $title
      * @return $this
      */
@@ -73,6 +109,15 @@ class ImageEntity extends AbstractEntity
         $this->title = $title;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLicense()
+    {
+
+        return $this->license;
     }
 
     /**

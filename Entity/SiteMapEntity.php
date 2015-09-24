@@ -45,14 +45,40 @@ class SiteMapEntity extends AbstractEntity
     }
 
     /**
+     * @return LocationCollection
+     */
+    public function getLocation()
+    {
+        return $this->locationCollection;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLoc()
+    {
+
+        return $this->loc;
+    }
+
+    /**
      * @param string $location
      * @return $this
      */
-    public function setLocation($location)
+    public function setLoc($location)
     {
         $this->loc = $location;
 
         return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getLastmod()
+    {
+
+        return $this->lastmod;
     }
 
     /**

@@ -52,6 +52,15 @@ class LocationEntity extends AbstractEntity
     }
 
     /**
+     * @return string
+     */
+    public function getLocation()
+    {
+
+        return $this->location;
+    }
+
+    /**
      * @param string $location
      * @return $this
      */
@@ -63,27 +72,63 @@ class LocationEntity extends AbstractEntity
     }
 
     /**
+     * @return string
+     */
+    public function getChangefreq()
+    {
+
+        return $this->changefreq;
+    }
+
+    /**
      * @param string $changefreq
+     * @return $this
      */
     public function setChangefreq($changefreq)
     {
         $this->changefreq = $changefreq;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPriority()
+    {
+
+        return $this->priority;
     }
 
     /**
      * @param string $priority
+     * @return $this
      */
     public function setPriority($priority)
     {
         $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastmod()
+    {
+
+        return $this->lastmod;
     }
 
     /**
      * @param string $lastmod
+     * @return $this
      */
     public function setLastmod($lastmod)
     {
         $this->lastmod = $lastmod;
+
+        return $this;
     }
 
     /**
@@ -109,13 +154,38 @@ class LocationEntity extends AbstractEntity
     }
 
     /**
+     * @return bool
+     */
+    public function getIsMobile()
+    {
+
+        return $this->isMobile;
+    }
+
+    /**
      * @param bool|false $isMobile
      * @return $this
      */
-    public function setMobile($isMobile = false)
+    public function setIsMobile($isMobile = false)
     {
         $this->isMobile = $isMobile;
 
         return $this;
+    }
+
+    /**
+     * @return ImageCollection
+     */
+    public function getImageCollection()
+    {
+        return $this->imageCollection;
+    }
+
+    /**
+     * @return VideoCollection
+     */
+    public function getVideoCollection()
+    {
+        return $this->videoCollection;
     }
 }
