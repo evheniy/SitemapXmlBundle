@@ -3,7 +3,6 @@
 namespace Evheniy\SitemapXmlBundle\Entity;
 
 use Evheniy\SitemapXmlBundle\Collection\LocationCollection;
-use Evheniy\SitemapXmlBundle\Exception\MaxCountLocationException;
 
 /**
  * Class SiteMapEntity
@@ -37,13 +36,9 @@ class SiteMapEntity extends AbstractEntity
     /**
      * @param LocationEntity $locationEntity
      * @return $this
-     * @throws MaxCountLocationException
      */
     public function addLocation(LocationEntity $locationEntity)
     {
-        if ($this->locationCollection->count() >= LocationEntity::MAX_COUNT_FOR_SITE_MAP) {
-            throw new MaxCountLocationException();
-        }
         $this->locationCollection->attach($locationEntity);
 
         return $this;

@@ -11,6 +11,7 @@ use Evheniy\SitemapXmlBundle\Exception\ValidateEntityException;
 interface ValidateEntityInterface
 {
     /**
+     * @return $this
      * @throws ValidateEntityException
      */
     public function validate();

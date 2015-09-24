@@ -16,6 +16,7 @@ class SiteMapEntity extends Entity implements ValidateEntityInterface
      */
     public function validate()
     {
+        //TODO 50 000 locations per sitemap
         throw new ValidateEntityException();
     }
 }

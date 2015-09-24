@@ -10,11 +10,6 @@ namespace Evheniy\SitemapXmlBundle\Entity;
 class ImageEntity extends AbstractEntity
 {
     /**
-     * Google can check only 1000 image url for one location
-     */
-    const MAX_COUNT_FOR_LOCATION = 1000;
-
-    /**
      * @var string
      */
     protected $loc;

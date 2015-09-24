@@ -4,7 +4,6 @@ namespace Evheniy\SitemapXmlBundle\Entity;
 
 use Evheniy\SitemapXmlBundle\Collection\ImageCollection;
 use Evheniy\SitemapXmlBundle\Collection\VideoCollection;
-use Evheniy\SitemapXmlBundle\Exception\MaxCountImageException;
 
 /**
  * Class LocationEntity
@@ -15,13 +14,21 @@ use Evheniy\SitemapXmlBundle\Exception\MaxCountImageException;
 class LocationEntity extends AbstractEntity
 {
     /**
-     *  Google can check only 50 000 location in one siteMap
-     */
-    const MAX_COUNT_FOR_SITE_MAP = 50000;
-    /**
      * @var string
      */
     protected $location;
+    /**
+     * @var string
+     */
+    protected $lastmod;
+    /**
+     * @var string
+     */
+    protected $changefreq;
+    /**
+     * @var string
+     */
+    protected $priority;
     /**
      * @var bool
      */
@@ -56,15 +63,35 @@ class LocationEntity extends AbstractEntity
     }
 
     /**
+     * @param string $changefreq
+     */
+    public function setChangefreq($changefreq)
+    {
+        $this->changefreq = $changefreq;
+    }
+
+    /**
+     * @param string $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+    }
+
+    /**
+     * @param string $lastmod
+     */
+    public function setLastmod($lastmod)
+    {
+        $this->lastmod = $lastmod;
+    }
+
+    /**
      * @param ImageEntity $imageEntity
      * @return $this
-     * @throws MaxCountImageException
      */
     public function addImage(ImageEntity $imageEntity)
     {
-        if ($this->imageCollection->count() >= ImageEntity::MAX_COUNT_FOR_LOCATION) {
-            throw new MaxCountImageException();
-        }
         $this->imageCollection->attach($imageEntity);
 
         return $this;
