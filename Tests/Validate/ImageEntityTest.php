@@ -11,10 +11,55 @@ use Evheniy\SitemapXmlBundle\Validate\ImageEntity;
 class ImageEntityTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var ImageEntity
+     */
+    protected $imageEntity;
+
+    /**
      *
      */
-    public function testValidate()
+    public function setUp()
     {
-        $this->markTestSkipped();
+        $this->imageEntity = new ImageEntity();
+    }
+
+    /**
+     *
+     */
+    public function testValidateEmptyLoc()
+    {
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Loc" field must be not empty!');
+        $this->imageEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateWrongLoc()
+    {
+        $this->imageEntity->setLocation('test');
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Loc" field must be valid url!');
+        $this->imageEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateWrongLicense()
+    {
+        $this->imageEntity->setLocation('http://test.com/');
+        $this->imageEntity->setLicense('test');
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"License" field should be valid url!');
+        $this->imageEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateOk()
+    {
+        $this->imageEntity->setLocation('http://test.com/');
+        $this->imageEntity->setLicense('http://test.com/license.pdf');
+        $this->assertEquals($this->imageEntity->validate(), $this->imageEntity);
     }
 }
