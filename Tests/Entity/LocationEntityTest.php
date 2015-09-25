@@ -33,7 +33,12 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $this->markTestSkipped();
+        $imageCollection = $this->reflectionClass->getProperty('imageCollection');
+        $imageCollection->setAccessible(true);
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Collection\ImageCollection', $imageCollection->getValue($this->locationEntity));
+        $videoCollection = $this->reflectionClass->getProperty('videoCollection');
+        $videoCollection->setAccessible(true);
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Collection\VideoCollection', $videoCollection->getValue($this->locationEntity));
     }
 
     /**
@@ -41,7 +46,11 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLocation()
     {
-        $this->markTestSkipped();
+        $testValue = 'testLocation';
+        $location = $this->reflectionClass->getProperty('location');
+        $location->setAccessible(true);
+        $location->setValue($this->locationEntity, $testValue);
+        $this->assertEquals($this->locationEntity->getLocation(), $testValue);
     }
 
     /**
@@ -49,7 +58,12 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetLocation()
     {
-        $this->markTestSkipped();
+        $testValue = 'testLocation';
+        $this->locationEntity->setLocation($testValue);
+        $location = $this->reflectionClass->getProperty('location');
+        $location->setAccessible(true);
+        $this->assertEquals($location->getValue($this->locationEntity), $testValue);
+        $this->assertEquals($this->locationEntity->getLocation(), $testValue);
     }
 
     /**
@@ -57,7 +71,11 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetChangefreq()
     {
-        $this->markTestSkipped();
+        $testValue = 'testChangefreq';
+        $changefreq = $this->reflectionClass->getProperty('changefreq');
+        $changefreq->setAccessible(true);
+        $changefreq->setValue($this->locationEntity, $testValue);
+        $this->assertEquals($this->locationEntity->getChangefreq(), $testValue);
     }
 
     /**
@@ -65,7 +83,12 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetChangefreq()
     {
-        $this->markTestSkipped();
+        $testValue = 'testChangefreq';
+        $this->locationEntity->setChangefreq($testValue);
+        $changefreq = $this->reflectionClass->getProperty('changefreq');
+        $changefreq->setAccessible(true);
+        $this->assertEquals($changefreq->getValue($this->locationEntity), $testValue);
+        $this->assertEquals($this->locationEntity->getChangefreq(), $testValue);
     }
 
     /**
@@ -73,7 +96,11 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPriority()
     {
-        $this->markTestSkipped();
+        $testValue = 'testPriority';
+        $priority = $this->reflectionClass->getProperty('priority');
+        $priority->setAccessible(true);
+        $priority->setValue($this->locationEntity, $testValue);
+        $this->assertEquals($this->locationEntity->getPriority(), $testValue);
     }
 
     /**
@@ -81,7 +108,12 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetPriority()
     {
-        $this->markTestSkipped();
+        $testValue = 'testPriority';
+        $this->locationEntity->setPriority($testValue);
+        $priority = $this->reflectionClass->getProperty('priority');
+        $priority->setAccessible(true);
+        $this->assertEquals($priority->getValue($this->locationEntity), $testValue);
+        $this->assertEquals($this->locationEntity->getPriority(), $testValue);
     }
 
     /**
@@ -89,7 +121,11 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLastmod()
     {
-        $this->markTestSkipped();
+        $testValue = 'testLastmod';
+        $lastmod = $this->reflectionClass->getProperty('lastmod');
+        $lastmod->setAccessible(true);
+        $lastmod->setValue($this->locationEntity, $testValue);
+        $this->assertEquals($this->locationEntity->getLastmod(), $testValue);
     }
 
     /**
@@ -97,7 +133,12 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetLastmod()
     {
-        $this->markTestSkipped();
+        $testValue = 'testLastmod';
+        $this->locationEntity->setLastmod($testValue);
+        $lastmod = $this->reflectionClass->getProperty('lastmod');
+        $lastmod->setAccessible(true);
+        $this->assertEquals($lastmod->getValue($this->locationEntity), $testValue);
+        $this->assertEquals($this->locationEntity->getLastmod(), $testValue);
     }
 
     /**

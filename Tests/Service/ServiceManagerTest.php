@@ -28,7 +28,8 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateSiteMapIndexEntity()
     {
-        $this->markTestSkipped();
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Entity\SiteMapIndexEntity', $this->serviceManager->createSiteMapIndexEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Validate\SiteMapIndexEntity', $this->serviceManager->createSiteMapIndexEntity());
     }
 
     /**
@@ -36,7 +37,8 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateSiteMapEntity()
     {
-        $this->markTestSkipped();
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Entity\SiteMapEntity', $this->serviceManager->createSiteMapEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Validate\SiteMapEntity', $this->serviceManager->createSiteMapEntity());
     }
 
     /**
@@ -44,7 +46,8 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateLocationEntity()
     {
-        $this->markTestSkipped();
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Entity\LocationEntity', $this->serviceManager->createLocationEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Validate\LocationEntity', $this->serviceManager->createLocationEntity());
     }
 
     /**
@@ -52,7 +55,8 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateImageEntity()
     {
-        $this->markTestSkipped();
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Entity\ImageEntity', $this->serviceManager->createImageEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Validate\ImageEntity', $this->serviceManager->createImageEntity());
     }
 
     /**
@@ -60,7 +64,8 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateVideoEntity()
     {
-        $this->markTestSkipped();
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Entity\VideoEntity', $this->serviceManager->createVideoEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Validate\VideoEntity', $this->serviceManager->createVideoEntity());
     }
 
     /**
@@ -68,6 +73,6 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateDumpManager()
     {
-        $this->markTestSkipped();
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Dump\DumpManager', $this->serviceManager->createDumpManager());
     }
 }

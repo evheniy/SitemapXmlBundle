@@ -33,7 +33,9 @@ class SiteMapIndexEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $this->markTestSkipped();
+        $siteMapCollection = $this->reflectionClass->getProperty('siteMapCollection');
+        $siteMapCollection->setAccessible(true);
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Collection\SiteMapCollection', $siteMapCollection->getValue($this->siteMapIndexEntity));
     }
 
     /**

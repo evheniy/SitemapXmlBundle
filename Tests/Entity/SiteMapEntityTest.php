@@ -33,7 +33,12 @@ class SiteMapEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $this->markTestSkipped();
+        $lastmod = $this->reflectionClass->getProperty('lastmod');
+        $lastmod->setAccessible(true);
+        $this->assertInstanceOf('DateTime', $lastmod->getValue($this->siteMapEntity));
+        $locationCollection = $this->reflectionClass->getProperty('locationCollection');
+        $locationCollection->setAccessible(true);
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Collection\LocationCollection', $locationCollection->getValue($this->siteMapEntity));
     }
 
     /**
@@ -57,7 +62,11 @@ class SiteMapEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLoc()
     {
-        $this->markTestSkipped();
+        $testValue = 'testLoc';
+        $loc = $this->reflectionClass->getProperty('loc');
+        $loc->setAccessible(true);
+        $loc->setValue($this->siteMapEntity, $testValue);
+        $this->assertEquals($this->siteMapEntity->getLoc(), $testValue);
     }
 
     /**
@@ -65,7 +74,12 @@ class SiteMapEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetLoc()
     {
-        $this->markTestSkipped();
+        $testValue = 'testLoc';
+        $this->siteMapEntity->setLoc($testValue);
+        $loc = $this->reflectionClass->getProperty('loc');
+        $loc->setAccessible(true);
+        $this->assertEquals($loc->getValue($this->siteMapEntity), $testValue);
+        $this->assertEquals($this->siteMapEntity->getLoc(), $testValue);
     }
 
     /**
@@ -73,7 +87,11 @@ class SiteMapEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLastmod()
     {
-        $this->markTestSkipped();
+        $testValue = new \DateTime();
+        $lastmod = $this->reflectionClass->getProperty('lastmod');
+        $lastmod->setAccessible(true);
+        $lastmod->setValue($this->siteMapEntity, $testValue);
+        $this->assertEquals($this->siteMapEntity->getLastmod(), $testValue);
     }
 
     /**
@@ -81,6 +99,11 @@ class SiteMapEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetLastmod()
     {
-        $this->markTestSkipped();
+        $testValue = new \DateTime();
+        $this->siteMapEntity->setLastmod($testValue);
+        $lastmod = $this->reflectionClass->getProperty('lastmod');
+        $lastmod->setAccessible(true);
+        $this->assertEquals($lastmod->getValue($this->siteMapEntity), $testValue);
+        $this->assertEquals($this->siteMapEntity->getLastmod(), $testValue);
     }
 }
