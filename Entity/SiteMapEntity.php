@@ -47,7 +47,7 @@ class SiteMapEntity extends AbstractEntity
     /**
      * @return LocationCollection
      */
-    public function getLocation()
+    public function getLocationCollection()
     {
         return $this->locationCollection;
     }

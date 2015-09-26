@@ -2,6 +2,7 @@
 
 namespace Evheniy\SitemapXmlBundle\Tests\Entity;
 
+use Evheniy\SitemapXmlBundle\Entity\SiteMapEntity;
 use Evheniy\SitemapXmlBundle\Entity\SiteMapIndexEntity;
 
 /**
@@ -43,14 +44,22 @@ class SiteMapIndexEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddSiteMap()
     {
-        $this->markTestSkipped();
+        $siteMapEntity = new SiteMapEntity();
+        $this->siteMapIndexEntity->addSiteMap($siteMapEntity);
+        $siteMapCollection = $this->reflectionClass->getProperty('siteMapCollection');
+        $siteMapCollection->setAccessible(true);
+        $collection = $siteMapCollection->getValue($this->siteMapIndexEntity);
+        $this->assertTrue($collection->contains($siteMapEntity));
     }
 
     /**
      *
      */
-    public function testGetSiteMap()
+    public function testGetSiteMapCollection()
     {
-        $this->markTestSkipped();
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Collection\SiteMapCollection', $this->siteMapIndexEntity->getSiteMapCollection());
+        $siteMapCollection = $this->reflectionClass->getProperty('siteMapCollection');
+        $siteMapCollection->setAccessible(true);
+        $this->assertEquals($siteMapCollection->getValue($this->siteMapIndexEntity), $this->siteMapIndexEntity->getSiteMapCollection());
     }
 }

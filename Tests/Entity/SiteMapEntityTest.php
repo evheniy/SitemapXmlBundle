@@ -2,6 +2,7 @@
 
 namespace Evheniy\SitemapXmlBundle\Tests\Entity;
 
+use Evheniy\SitemapXmlBundle\Entity\LocationEntity;
 use Evheniy\SitemapXmlBundle\Entity\SiteMapEntity;
 
 /**
@@ -46,15 +47,23 @@ class SiteMapEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddLocation()
     {
-        $this->markTestSkipped();
+        $locationEntity = new LocationEntity();
+        $this->siteMapEntity->addLocation($locationEntity);
+        $locationCollection = $this->reflectionClass->getProperty('locationCollection');
+        $locationCollection->setAccessible(true);
+        $collection = $locationCollection->getValue($this->siteMapEntity);
+        $this->assertTrue($collection->contains($locationEntity));
     }
 
     /**
      *
      */
-    public function testGetLocation()
+    public function testGetLocationCollection()
     {
-        $this->markTestSkipped();
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Collection\LocationCollection', $this->siteMapEntity->getLocationCollection());
+        $locationCollection = $this->reflectionClass->getProperty('locationCollection');
+        $locationCollection->setAccessible(true);
+        $this->assertEquals($locationCollection->getValue($this->siteMapEntity), $this->siteMapEntity->getLocationCollection());
     }
 
     /**

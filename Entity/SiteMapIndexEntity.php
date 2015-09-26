@@ -38,7 +38,7 @@ class SiteMapIndexEntity extends AbstractEntity
     /**
      * @return SiteMapCollection
      */
-    public function getSiteMap()
+    public function getSiteMapCollection()
     {
         return $this->siteMapCollection;
     }

@@ -5,8 +5,6 @@ namespace Evheniy\SitemapXmlBundle\Tests\Entity;
 use Evheniy\SitemapXmlBundle\Entity\ImageEntity;
 use Evheniy\SitemapXmlBundle\Entity\VideoEntity;
 use Evheniy\SitemapXmlBundle\Entity\LocationEntity;
-use Evheniy\SitemapXmlBundle\Collection\ImageCollection;
-use Evheniy\SitemapXmlBundle\Collection\VideoCollection;
 
 /**
  * Class LocationEntityTest
@@ -154,9 +152,6 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
         $this->locationEntity->addImage($imageEntity);
         $imageCollection = $this->reflectionClass->getProperty('imageCollection');
         $imageCollection->setAccessible(true);
-        /**
-         * @var ImageCollection $collection
-         */
         $collection = $imageCollection->getValue($this->locationEntity);
         $this->assertTrue($collection->contains($imageEntity));
     }
@@ -170,9 +165,6 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
         $this->locationEntity->addVideo($videoEntity);
         $videoCollection = $this->reflectionClass->getProperty('videoCollection');
         $videoCollection->setAccessible(true);
-        /**
-         * @var VideoCollection $collection
-         */
         $collection = $videoCollection->getValue($this->locationEntity);
         $this->assertTrue($collection->contains($videoEntity));
     }
