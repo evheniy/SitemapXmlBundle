@@ -1,6 +1,7 @@
 <?php
 
 namespace Evheniy\SitemapXmlBundle\Dump;
+use Evheniy\SitemapXmlBundle\Exception\DumpException;
 
 /**
  * Class DumpManager
@@ -16,36 +17,74 @@ class DumpManager
      * @var bool
      */
     protected $isCarefully = false;
+    /**
+     * @var string
+     */
+    protected $protocol = 'http';
+    /**
+     * @var string
+     */
+    protected $domain;
 
     /**
      * @param string $path
+     *
+     * @return $this
      */
     public function setPath($path = '')
     {
         $this->path = $path;
+
+        return $this;
     }
 
     /**
      * @param bool|false $isCarefully
+     *
+     * @return $this
      */
-    public function setIsCarefully($isCarefully = false)
+    public function setCarefully($isCarefully = false)
     {
         $this->isCarefully = $isCarefully;
+
+        return $this;
+    }
+
+    /**
+     * @param string $protocol
+     *
+     * @return $this
+     * @throws DumpException
+     */
+    public function setProtocol($protocol = 'http')
+    {
+        if (!in_array($protocol, array('http', 'https'))) {
+            throw new DumpException('Wrong protocol!');
+        }
+        $this->protocol = $protocol;
+
+        return $this;
+    }
+
+    /**
+     * @param string $domain
+     *
+     * @return $this
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
+
+        return $this;
     }
 
     /**
      *
      */
-    public function dumpSiteMapIndex()
+    public function dump()
     {
-        //TODO
-    }
-
-    /**
-     *
-     */
-    public function dumpSiteMap()
-    {
-        //TODO
+        if (empty($this->domain)) {
+            throw new DumpException('Empty domain!');
+        }
     }
 }

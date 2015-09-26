@@ -3,11 +3,11 @@
 namespace Evheniy\SitemapXmlBundle\Service;
 
 use Evheniy\SitemapXmlBundle\Dump\DumpManager;
-use Evheniy\SitemapXmlBundle\Validate\ImageEntity;
-use Evheniy\SitemapXmlBundle\Validate\LocationEntity;
-use Evheniy\SitemapXmlBundle\Validate\SiteMapEntity;
-use Evheniy\SitemapXmlBundle\Validate\SiteMapIndexEntity;
-use Evheniy\SitemapXmlBundle\Validate\VideoEntity;
+use Evheniy\SitemapXmlBundle\Dump\ImageEntity;
+use Evheniy\SitemapXmlBundle\Dump\LocationEntity;
+use Evheniy\SitemapXmlBundle\Dump\SiteMapEntity;
+use Evheniy\SitemapXmlBundle\Dump\SiteMapIndexEntity;
+use Evheniy\SitemapXmlBundle\Dump\VideoEntity;
 
 /**
  * Class ServiceManager

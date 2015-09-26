@@ -30,6 +30,7 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Entity\SiteMapIndexEntity', $this->serviceManager->createSiteMapIndexEntity());
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Validate\SiteMapIndexEntity', $this->serviceManager->createSiteMapIndexEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Dump\SiteMapIndexEntity', $this->serviceManager->createSiteMapIndexEntity());
     }
 
     /**
@@ -39,6 +40,7 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Entity\SiteMapEntity', $this->serviceManager->createSiteMapEntity());
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Validate\SiteMapEntity', $this->serviceManager->createSiteMapEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Dump\SiteMapEntity', $this->serviceManager->createSiteMapEntity());
     }
 
     /**
@@ -48,6 +50,7 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Entity\LocationEntity', $this->serviceManager->createLocationEntity());
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Validate\LocationEntity', $this->serviceManager->createLocationEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Dump\LocationEntity', $this->serviceManager->createLocationEntity());
     }
 
     /**
@@ -57,6 +60,7 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Entity\ImageEntity', $this->serviceManager->createImageEntity());
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Validate\ImageEntity', $this->serviceManager->createImageEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Dump\ImageEntity', $this->serviceManager->createImageEntity());
     }
 
     /**
@@ -66,6 +70,7 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Entity\VideoEntity', $this->serviceManager->createVideoEntity());
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Validate\VideoEntity', $this->serviceManager->createVideoEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Dump\VideoEntity', $this->serviceManager->createVideoEntity());
     }
 
     /**
