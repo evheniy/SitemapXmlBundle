@@ -27,11 +27,23 @@ class SiteMapIndexEntityTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function testValidateWrongSiteMapEntityLoc()
+    public function testValidateEmptySiteMapEntityLoc()
     {
         $siteMap = new SiteMapEntity();
         $this->siteMapIndexEntity->addSiteMap($siteMap);
         $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Loc" field must be set!');
+        $this->siteMapIndexEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateWrongSiteMapEntityLoc()
+    {
+        $siteMap = new SiteMapEntity();
+        $siteMap->setLoc('test');
+        $this->siteMapIndexEntity->addSiteMap($siteMap);
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Loc" field must be valid url!');
         $this->siteMapIndexEntity->validate();
     }
 

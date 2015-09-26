@@ -25,6 +25,10 @@ class DumpManager
      * @var string
      */
     protected $domain;
+    /**
+     * @var SiteMapIndexEntity
+     */
+    protected $siteMapIndexEntity;
 
     /**
      * @param string $path
@@ -81,14 +85,85 @@ class DumpManager
     /**
      * @param SiteMapIndexEntity $siteMapIndexEntity
      *
+     * @return $this
+     */
+    public function setSiteMapIndexEntity(SiteMapIndexEntity $siteMapIndexEntity)
+    {
+        $this->siteMapIndexEntity = $siteMapIndexEntity;
+
+        return $this;
+    }
+
+    /**
      * @throws DumpException
      */
-    public function dump(SiteMapIndexEntity $siteMapIndexEntity)
+    public function dump()
+    {
+        $this->validateDomain();
+        $this->validateAllSiteMap();
+        $this->saveSiteMap();
+        $this->saveSiteMapIndex();
+    }
+
+    /**
+     * @throws DumpException
+     */
+    protected function validateDomain()
     {
         if (empty($this->domain)) {
             throw new DumpException('Empty domain!');
         }
-        $siteMapIndexEntity->getXml();
-        //TODO $siteMapIndexEntity->getSiteMapCollection() foreach set location if empty before validate() and getXml()
+    }
+
+    /**
+     *
+     */
+    protected function setSiteMapLocation()
+    {
+        $i = 0;
+        foreach ($this->siteMapIndexEntity->getSiteMapCollection() as $siteMapEntity) {
+            $loc = $siteMapEntity->getLoc();
+            if (empty($loc)) {
+                $siteMapEntity->setLoc($this->protocol . '://' . $this->domain . '/' . $this->path . '/' . 'sitemap' . $i++ . '.xml');
+            }
+        }
+    }
+
+    /**
+     * @throws \Evheniy\SitemapXmlBundle\Exception\ValidateEntityException
+     */
+    protected function validateAllSiteMap()
+    {
+        $this->siteMapIndexEntity->validate();
+    }
+
+    /**
+     *
+     */
+    protected function saveSiteMap()
+    {
+        foreach ($this->siteMapIndexEntity->getSiteMapCollection() as $siteMapEntity) {
+            $this->saveFile($siteMapEntity->getLoc(), $siteMapEntity->getXml());
+        }
+
+    }
+
+    /**
+     *
+     */
+    protected function saveSiteMapIndex()
+    {
+        $this->saveFile($this->path . '/' . 'sitemap.xml', $this->siteMapIndexEntity->getXml());
+    }
+
+    /**
+     * @param string $filePath
+     * @param string $fileContent
+     */
+    protected function saveFile($filePath, $fileContent)
+    {
+        $filePath;
+        $fileContent;
+        //TODO save file
     }
 }

@@ -22,6 +22,9 @@ class SiteMapIndexEntity extends Entity implements ValidateEntityInterface
             if (empty($loc)) {
                 throw new ValidateEntityException('"Loc" field must be set!');
             }
+            if (filter_var($loc, FILTER_VALIDATE_URL) === false) {
+                throw new ValidateEntityException('"Loc" field must be valid url!');
+            }
             $siteMapEntity->validate();
         }
 
