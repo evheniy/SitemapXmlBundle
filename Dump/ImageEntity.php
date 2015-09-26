@@ -13,8 +13,10 @@ class ImageEntity extends Entity implements DumpEntityInterface
 {
     /**
      * @param array $params
+     *
+     * @return string
      */
-    public function dump(array $params = array())
+    public function getXml(array $params = array())
     {
         // TODO: Implement dump() method.
     }

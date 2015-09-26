@@ -79,12 +79,15 @@ class DumpManager
     }
 
     /**
+     * @param SiteMapIndexEntity $siteMapIndexEntity
      *
+     * @throws DumpException
      */
-    public function dump()
+    public function dump(SiteMapIndexEntity $siteMapIndexEntity)
     {
         if (empty($this->domain)) {
             throw new DumpException('Empty domain!');
         }
+        $siteMapIndexEntity->getXml();
     }
 }

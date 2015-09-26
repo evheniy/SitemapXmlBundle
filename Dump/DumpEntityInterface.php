@@ -9,5 +9,10 @@ namespace Evheniy\SitemapXmlBundle\Dump;
  */
 interface DumpEntityInterface
 {
-    public function dump(array $params = array());
+    /**
+     * @param array $params
+     *
+     * @return string
+     */
+    public function getXml(array $params = array());
 }
