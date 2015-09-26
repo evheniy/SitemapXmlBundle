@@ -89,5 +89,6 @@ class DumpManager
             throw new DumpException('Empty domain!');
         }
         $siteMapIndexEntity->getXml();
+        //TODO $siteMapIndexEntity->getSiteMapCollection() foreach set location if empty before validate() and getXml()
     }
 }

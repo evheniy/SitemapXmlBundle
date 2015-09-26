@@ -8,6 +8,7 @@ use Evheniy\SitemapXmlBundle\Validate\SiteMapIndexEntity as Entity;
  * Class SiteMapIndexEntity
  *
  * @package Evheniy\SitemapXmlBundle\Dump
+ * https://support.google.com/webmasters/answer/75712
  */
 class SiteMapIndexEntity extends Entity implements DumpEntityInterface
 {
@@ -18,6 +19,16 @@ class SiteMapIndexEntity extends Entity implements DumpEntityInterface
      */
     public function getXml(array $params = array())
     {
-        // TODO: Implement dump() method.
+        $siteMapIndexText = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
+        $siteMapIndexText .= '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        foreach ($this->siteMapCollection as $siteMapEntity) {
+            $siteMapIndexText .= '<sitemap>';
+            $siteMapIndexText .= '<loc>' . $siteMapEntity->getLoc() . '</loc>';
+            $siteMapIndexText .= '<lastmod>' . $siteMapEntity->getLastmod() . '</lastmod>';
+            $siteMapIndexText .= '</sitemap>';
+        }
+        $siteMapIndexText .= '</sitemapindex>';
+
+        return $siteMapIndexText;
     }
 }
