@@ -85,12 +85,10 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($isValidPriority->invoke($this->locationEntity));
     }
 
-    public function testValidate2()
-    {
-        $this->markTestSkipped();
-    }
-
-    public function testValidate3()
+    /**
+     *
+     */
+    public function testValidate()
     {
         $this->markTestSkipped();
     }
