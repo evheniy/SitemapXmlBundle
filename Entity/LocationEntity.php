@@ -26,7 +26,7 @@ class LocationEntity extends AbstractEntity
      */
     protected $changefreq;
     /**
-     * @var string
+     * @var double
      */
     protected $priority;
     /**
@@ -92,7 +92,7 @@ class LocationEntity extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return double
      */
     public function getPriority()
     {
@@ -101,7 +101,7 @@ class LocationEntity extends AbstractEntity
     }
 
     /**
-     * @param string $priority
+     * @param double $priority
      * @return $this
      */
     public function setPriority($priority)
