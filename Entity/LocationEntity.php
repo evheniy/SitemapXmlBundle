@@ -66,7 +66,7 @@ class LocationEntity extends AbstractEntity
      */
     public function setLocation($location)
     {
-        $this->location = rawurlencode($location);
+        $this->location = $location;
 
         return $this;
     }

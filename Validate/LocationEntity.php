@@ -38,7 +38,7 @@ class LocationEntity extends Entity implements ValidateEntityInterface
             throw new ValidateEntityException('"Changefreq" field should be in [\'always\', \'hourly\', \'daily\', \'weekly\', \'monthly\', \'yearly\', \'never\']!');
         }
         if (!empty($this->priority) && !$this->isValidPriority()) {
-            throw new ValidateEntityException('"priority" field should be between 0.0 and 1.0!');
+            throw new ValidateEntityException('"Priority" field should be between 0.0 and 1.0!');
         }
         if ($this->imageCollection->count() > self::MAX_COUNT_IMAGES_FOR_LOCATION) {
             throw new ValidateEntityException('Max count images for location is 1000!');

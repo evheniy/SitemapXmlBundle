@@ -2,6 +2,7 @@
 
 namespace Evheniy\SitemapXmlBundle\Tests\Validate;
 
+use Evheniy\SitemapXmlBundle\Validate\ImageEntity;
 use Evheniy\SitemapXmlBundle\Validate\LocationEntity;
 
 /**
@@ -88,8 +89,106 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function testValidate()
+    public function testValidateEmptyLocation()
     {
-        $this->markTestSkipped();
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Location" field must be not empty!');
+        $this->locationEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateWrongLocation()
+    {
+        $this->locationEntity->setLocation('test');
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Location" field must be valid url!');
+        $this->locationEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateWrongLastmod()
+    {
+        $this->locationEntity
+            ->setLocation('http://test.com/')
+            ->setLastmod('test');
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Lastmod" field should be \DateTime instance!');
+        $this->locationEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateWrongChangefreq()
+    {
+        $this->locationEntity
+            ->setLocation('http://test.com/')
+            ->setLastmod(new \DateTime())
+            ->setChangefreq('test');
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Changefreq" field should be in [\'always\', \'hourly\', \'daily\', \'weekly\', \'monthly\', \'yearly\', \'never\']!');
+        $this->locationEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateWrongPriority()
+    {
+        $this->locationEntity
+            ->setLocation('http://test.com/')
+            ->setLastmod(new \DateTime())
+            ->setChangefreq('always')
+            ->setPriority(125);
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Priority" field should be between 0.0 and 1.0!');
+        $this->locationEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateWrongImageCollectionCount()
+    {
+        $this->locationEntity
+            ->setLocation('http://test.com/')
+            ->setLastmod(new \DateTime())
+            ->setChangefreq('always')
+            ->setPriority(0.5);
+        for ($i = 0; $i < LocationEntity::MAX_COUNT_IMAGES_FOR_LOCATION + 1; $i++) {
+            $this->locationEntity->addImage(new ImageEntity());
+        }
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', 'Max count images for location is ' . LocationEntity::MAX_COUNT_IMAGES_FOR_LOCATION . '!');
+        $this->locationEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateWrongImage()
+    {
+        $this->locationEntity
+            ->setLocation('http://test.com/')
+            ->setLastmod(new \DateTime())
+            ->setChangefreq('always')
+            ->setPriority(0.5)
+            ->addImage(new ImageEntity());
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Loc" field must be not empty!');
+        $this->locationEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateOk()
+    {
+        $image = new ImageEntity();
+        $image->setLocation('http://test.com/image.png');
+        $this->locationEntity
+            ->setLocation('http://test.com/')
+            ->setLastmod(new \DateTime())
+            ->setChangefreq('always')
+            ->setPriority(0.5)
+            ->addImage($image);
+        $this->assertEquals($this->locationEntity->validate(), $this->locationEntity);
     }
 }

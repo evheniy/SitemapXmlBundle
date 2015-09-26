@@ -47,8 +47,9 @@ class ImageEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateWrongLicense()
     {
-        $this->imageEntity->setLocation('http://test.com/');
-        $this->imageEntity->setLicense('test');
+        $this->imageEntity
+            ->setLocation('http://test.com/')
+            ->setLicense('test');
         $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"License" field should be valid url!');
         $this->imageEntity->validate();
     }
@@ -58,8 +59,9 @@ class ImageEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateOk()
     {
-        $this->imageEntity->setLocation('http://test.com/');
-        $this->imageEntity->setLicense('http://test.com/license.pdf');
-        $this->assertEquals($this->imageEntity->validate(), $this->imageEntity);
+        $this->imageEntity
+            ->setLocation('http://test.com/')
+            ->setLicense('http://test.com/license.pdf');
+         $this->assertEquals($this->imageEntity->validate(), $this->imageEntity);
     }
 }
