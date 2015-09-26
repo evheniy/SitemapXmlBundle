@@ -2,6 +2,7 @@
 
 namespace Evheniy\SitemapXmlBundle\Tests\Validate;
 
+use Evheniy\SitemapXmlBundle\Validate\SiteMapEntity;
 use Evheniy\SitemapXmlBundle\Validate\SiteMapIndexEntity;
 
 /**
@@ -11,10 +12,37 @@ use Evheniy\SitemapXmlBundle\Validate\SiteMapIndexEntity;
 class SiteMapIndexEntityTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var SiteMapIndexEntity
+     */
+    protected $siteMapIndexEntity;
+
+    /**
      *
      */
-    public function testValidate()
+    public function setUp()
     {
-        $this->markTestSkipped();
+        $this->siteMapIndexEntity = new SiteMapIndexEntity();
+    }
+
+    /**
+     *
+     */
+    public function testValidateWrongSiteMapEntityLoc()
+    {
+        $siteMap = new SiteMapEntity();
+        $this->siteMapIndexEntity->addSiteMap($siteMap);
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Loc" field must be set!');
+        $this->siteMapIndexEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateOk()
+    {
+        $siteMap = new SiteMapEntity();
+        $siteMap->setLoc('http://test.com/');
+        $this->siteMapIndexEntity->addSiteMap($siteMap);
+        $this->assertEquals($this->siteMapIndexEntity->validate(), $this->siteMapIndexEntity);
     }
 }

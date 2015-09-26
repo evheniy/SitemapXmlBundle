@@ -18,13 +18,9 @@ class SiteMapIndexEntity extends Entity implements ValidateEntityInterface
     public function validate()
     {
         foreach ($this->siteMapCollection as $siteMapEntity) {
-            $loc = $siteMapEntity->getLoc();
-            $lastmod = $siteMapEntity->getLastmod();
+            $loc     = $siteMapEntity->getLoc();
             if (empty($loc)) {
                 throw new ValidateEntityException('"Loc" field must be set!');
-            }
-            if (empty($lastmod)) {
-                throw new ValidateEntityException('"Lastmod" field must be set!');
             }
             $siteMapEntity->validate();
         }
