@@ -2,7 +2,11 @@
 
 namespace Evheniy\SitemapXmlBundle\Tests\Entity;
 
+use Evheniy\SitemapXmlBundle\Entity\ImageEntity;
+use Evheniy\SitemapXmlBundle\Entity\VideoEntity;
 use Evheniy\SitemapXmlBundle\Entity\LocationEntity;
+use Evheniy\SitemapXmlBundle\Collection\ImageCollection;
+use Evheniy\SitemapXmlBundle\Collection\VideoCollection;
 
 /**
  * Class LocationEntityTest
@@ -146,7 +150,15 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddImage()
     {
-        $this->markTestSkipped();
+        $imageEntity = new ImageEntity();
+        $this->locationEntity->addImage($imageEntity);
+        $imageCollection = $this->reflectionClass->getProperty('imageCollection');
+        $imageCollection->setAccessible(true);
+        /**
+         * @var ImageCollection $collection
+         */
+        $collection = $imageCollection->getValue($this->locationEntity);
+        $this->assertTrue($collection->contains($imageEntity));
     }
 
     /**
@@ -154,7 +166,15 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddVideo()
     {
-        $this->markTestSkipped();
+        $videoEntity = new VideoEntity();
+        $this->locationEntity->addVideo($videoEntity);
+        $videoCollection = $this->reflectionClass->getProperty('videoCollection');
+        $videoCollection->setAccessible(true);
+        /**
+         * @var VideoCollection $collection
+         */
+        $collection = $videoCollection->getValue($this->locationEntity);
+        $this->assertTrue($collection->contains($videoEntity));
     }
 
     /**
@@ -162,7 +182,12 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsMobile()
     {
-        $this->markTestSkipped();
+        $isMobile = $this->reflectionClass->getProperty('isMobile');
+        $isMobile->setAccessible(true);
+        $isMobile->setValue($this->locationEntity, true);
+        $this->assertTrue($this->locationEntity->isMobile());
+        $isMobile->setValue($this->locationEntity, false);
+        $this->assertFalse($this->locationEntity->isMobile());
     }
 
     /**
@@ -170,7 +195,14 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetMobile()
     {
-        $this->markTestSkipped();
+        $this->locationEntity->setMobile(true);
+        $isMobile = $this->reflectionClass->getProperty('isMobile');
+        $isMobile->setAccessible(true);
+        $this->assertTrue($isMobile->getValue($this->locationEntity));
+        $this->assertTrue($this->locationEntity->isMobile());
+        $this->locationEntity->setMobile(false);
+        $this->assertFalse($isMobile->getValue($this->locationEntity));
+        $this->assertFalse($this->locationEntity->isMobile());
     }
 
     /**
@@ -178,7 +210,10 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetImageCollection()
     {
-        $this->markTestSkipped();
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Collection\ImageCollection', $this->locationEntity->getImageCollection());
+        $imageCollection = $this->reflectionClass->getProperty('imageCollection');
+        $imageCollection->setAccessible(true);
+        $this->assertEquals($imageCollection->getValue($this->locationEntity), $this->locationEntity->getImageCollection());
     }
 
     /**
@@ -186,6 +221,9 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetVideoCollection()
     {
-        $this->markTestSkipped();
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Collection\VideoCollection', $this->locationEntity->getVideoCollection());
+        $videoCollection = $this->reflectionClass->getProperty('videoCollection');
+        $videoCollection->setAccessible(true);
+        $this->assertEquals($videoCollection->getValue($this->locationEntity), $this->locationEntity->getVideoCollection());
     }
 }
