@@ -11,10 +11,24 @@ use Evheniy\SitemapXmlBundle\Validate\VideoEntity;
 class VideoEntityTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var VideoEntity
+     */
+    protected $videoEntity;
+
+    /**
+     *
+     */
+    public function setUp()
+    {
+        $this->videoEntity = new VideoEntity();
+    }
+
+    /**
      *
      */
     public function testValidate()
     {
-        $this->markTestSkipped();
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException');
+        $this->videoEntity->validate();
     }
 }

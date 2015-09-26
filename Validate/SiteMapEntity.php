@@ -24,7 +24,7 @@ class SiteMapEntity extends Entity implements ValidateEntityInterface
     public function validate()
     {
         if ($this->locationCollection->count() > self::MAX_COUNT_LOCATIONS_FOR_SITEMAP) {
-            throw new ValidateEntityException('Max count locations for sitemap is 50 000!');
+            throw new ValidateEntityException('Max count locations for sitemap is 50000!');
         }
         foreach ($this->locationCollection as $locationEntity) {
             $locationEntity->validate();
