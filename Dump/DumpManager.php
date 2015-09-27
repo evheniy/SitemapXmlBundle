@@ -120,11 +120,11 @@ class DumpManager
      */
     protected function setSiteMapLocation()
     {
-        $i = 0;
+        $counter = 0;
         foreach ($this->siteMapIndexEntity->getSiteMapCollection() as $siteMapEntity) {
             $loc = $siteMapEntity->getLoc();
             if (empty($loc)) {
-                $siteMapEntity->setLoc($this->protocol . '://' . $this->domain . '/' . $this->path . '/' . 'sitemap' . $i++ . '.xml');
+                $siteMapEntity->setLoc($this->protocol . '://' . $this->domain . '/' . $this->path . '/' . 'sitemap' . $counter++ . '.xml');
             }
         }
     }
