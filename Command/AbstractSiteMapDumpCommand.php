@@ -33,8 +33,7 @@ abstract class AbstractSiteMapDumpCommand extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'If set, the task will yell in uppercase letters'
-            )
-        ;
+            );
     }
 
     /**
