@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @package Evheniy\SitemapXmlBundle\Command
  */
-abstract class AbstractSiteMapDumpCommand extends Command
+class SiteMapDumpCommand extends Command
 {
     /**
      *
@@ -60,5 +60,11 @@ abstract class AbstractSiteMapDumpCommand extends Command
         return 0;
     }
 
-    abstract protected function setEntities();
+    /**
+     * @return array
+     */
+    protected function setEntities()
+    {
+        return array();
+    }
 }

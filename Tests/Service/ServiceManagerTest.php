@@ -78,6 +78,6 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateDumpManager()
     {
-        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Dump\DumpManager', $this->serviceManager->createDumpManager());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Dump\DumpManager', $this->serviceManager->createDumpManager('path'));
     }
 }
