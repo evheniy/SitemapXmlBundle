@@ -16,6 +16,18 @@ use Evheniy\SitemapXmlBundle\Dump\VideoEntity;
 class ServiceManager
 {
     /**
+     * @var string
+     */
+    protected $rootDir;
+
+    /**
+     * @param string $rootDir
+     */
+    public function __construct($rootDir)
+    {
+        $this->rootDir = $rootDir;
+    }
+    /**
      * @return SiteMapIndexEntity
      */
     public function createSiteMapIndexEntity()
@@ -60,6 +72,6 @@ class ServiceManager
      */
     public function createDumpManager()
     {
-        return new DumpManager();
+        return new DumpManager(realpath($this->rootDir . '/../web'));
     }
 }

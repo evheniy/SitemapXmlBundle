@@ -1,3 +1,4 @@
 services:
     sitemap:
         class: Evheniy\SitemapXmlBundle\Service\ServiceManager
+        arguments: ['%kernel.root_dir%']

@@ -12,6 +12,10 @@ class DumpManager
     /**
      * @var string
      */
+    protected $webDir;
+    /**
+     * @var string
+     */
     protected $path = '';
     /**
      * @var bool
@@ -29,6 +33,14 @@ class DumpManager
      * @var SiteMapIndexEntity
      */
     protected $siteMapIndexEntity;
+
+    /**
+     * @param string $webDir
+     */
+    public function __construct($webDir)
+    {
+        $this->webDir = $webDir;
+    }
 
     /**
      * @param string $path
