@@ -85,6 +85,8 @@ class SiteMapDumpCommand extends ContainerAwareCommand
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
+        $input;
+        $output;
         $this->serviceManager = $this->getContainer()->get('sitemap');
         $this->setEntities();
     }

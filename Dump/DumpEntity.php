@@ -21,19 +21,19 @@ class DumpEntity extends Entity implements DumpFileInterface
      */
     public function saveFile($filePath, $fileContent)
     {
-        $fs = new Filesystem();
-        if ($this->isCarefully && $fs->exists($filePath)) {
+        $filesystem = new Filesystem();
+        if ($this->isCarefully && $filesystem->exists($filePath)) {
             throw new DumpException('File "' . $filePath . '" already exists!');
         }
-        if ($this->isCarefully && !$fs->exists(dirname($filePath))) {
+        if ($this->isCarefully && !$filesystem->exists(dirname($filePath))) {
             throw new DumpException('Directory "' . dirname($filePath) . '" does not exist!');
         }
         try {
-            $fs->mkdir(dirname($filePath));
+            $filesystem->mkdir(dirname($filePath));
         } catch (IOExceptionInterface $e) {
             throw new DumpException('An error occurred while creating your directory at ' . $e->getPath());
         }
-        $fs->dumpFile($filePath, $fileContent);
+        $filesystem->dumpFile($filePath, $fileContent);
 
         return $this;
     }
