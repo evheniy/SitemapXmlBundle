@@ -11,114 +11,17 @@ use Evheniy\SitemapXmlBundle\Exception\DumpException;
 class DumpManager
 {
     /**
-     * @var string
+     * @var DumpEntity
      */
-    protected $webDir;
-    /**
-     * @var string
-     */
-    protected $path = '';
-    /**
-     * @var bool
-     */
-    protected $isCarefully = false;
-    /**
-     * @var string
-     */
-    protected $protocol = 'http';
-    /**
-     * @var string
-     */
-    protected $domain;
-    /**
-     * @var SiteMapIndexEntity
-     */
-    protected $siteMapIndexEntity;
-    /**
-     * @var SiteMapEntity
-     */
-    protected $siteMapEntity;
+    protected $dumpEntity;
 
     /**
-     * @param string $webDir
-     */
-    public function __construct($webDir)
-    {
-        $this->webDir = $webDir;
-    }
-
-    /**
-     * @param string $path
-     *
+     * @param DumpEntity $dumpEntity
      * @return $this
      */
-    public function setPath($path = '')
+    protected function setEntity(DumpEntity $dumpEntity)
     {
-        $this->path = $path;
-
-        return $this;
-    }
-
-    /**
-     * @param bool|false $isCarefully
-     *
-     * @return $this
-     */
-    public function setCarefully($isCarefully = false)
-    {
-        $this->isCarefully = $isCarefully;
-
-        return $this;
-    }
-
-    /**
-     * @param string $protocol
-     *
-     * @return $this
-     * @throws DumpException
-     */
-    public function setProtocol($protocol = 'http')
-    {
-        if (!in_array($protocol, array('http', 'https'))) {
-            throw new DumpException('Wrong protocol!');
-        }
-        $this->protocol = $protocol;
-
-        return $this;
-    }
-
-    /**
-     * @param string $domain
-     *
-     * @return $this
-     */
-    public function setDomain($domain)
-    {
-        $this->domain = $domain;
-
-        return $this;
-    }
-
-    /**
-     * @param SiteMapIndexEntity $siteMapIndexEntity
-     *
-     * @return $this
-     */
-    public function setSiteMapIndexEntity(SiteMapIndexEntity $siteMapIndexEntity)
-    {
-        $this->siteMapIndexEntity = $siteMapIndexEntity;
-
-        return $this;
-    }
-
-    /**
-     * @param SiteMapEntity $siteMapEntity
-     *
-     * @return $this
-     */
-    public function setSiteMapEntity(SiteMapEntity $siteMapEntity)
-    {
-        $this->siteMapEntity = $siteMapEntity;
+        $this->dumpEntity = $dumpEntity;
 
         return $this;
     }
@@ -128,7 +31,7 @@ class DumpManager
      */
     public function dumpSiteMapIndex()
     {
-        $this->validateDomain();
+        $this->dumpEntity->validate();
         $this->validateSiteMapIndex();
         $this->validateAllSiteMap();
         $this->saveSiteMap();
@@ -140,7 +43,7 @@ class DumpManager
      */
     public function dumpSiteMap()
     {
-        $this->validateDomain();
+        $this->dumpEntity->validate();
         $this->validateSiteMap();
         $this->saveSiteMap();
     }
@@ -148,19 +51,10 @@ class DumpManager
     /**
      * @throws DumpException
      */
-    protected function validateDomain()
-    {
-        if (empty($this->domain)) {
-            throw new DumpException('Empty domain!');
-        }
-    }
-
-    /**
-     * @throws DumpException
-     */
     protected function validateSiteMapIndex()
     {
-        if (empty($this->siteMapIndexEntity)) {
+        $siteMapIndexEntity = $this->dumpEntity->getSiteMapIndexEntity();
+        if (empty($siteMapIndexEntity)) {
             throw new DumpException('Empty SiteMapIndexEntity!');
         }
     }
@@ -170,7 +64,8 @@ class DumpManager
      */
     protected function validateSiteMap()
     {
-        if (empty($this->siteMapEntity)) {
+        $siteMapEntity = $this->dumpEntity->getSiteMapEntity();
+        if (empty($siteMapEntity)) {
             throw new DumpException('Empty SiteMapEntity!');
         }
     }
@@ -180,11 +75,22 @@ class DumpManager
      */
     protected function setSiteMapLocation()
     {
+        $siteMapIndexEntity = $this->dumpEntity->getSiteMapIndexEntity();
         $counter = 0;
-        foreach ($this->siteMapIndexEntity->getSiteMapCollection() as $siteMapEntity) {
+        foreach ($siteMapIndexEntity->getSiteMapCollection() as $siteMapEntity) {
             $loc = $siteMapEntity->getLoc();
             if (empty($loc)) {
-                $siteMapEntity->setLoc($this->protocol . '://' . $this->domain . '/' . $this->path . '/' . 'sitemap' . $counter++ . '.xml');
+                $siteMapEntity->setLoc(
+                    $this->dumpEntity->getProtocol() .
+                    '://' .
+                    $this->dumpEntity->getDomain() .
+                    '/' .
+                    $this->dumpEntity->getPath() .
+                    '/' .
+                    'sitemap' .
+                    $counter++ .
+                    '.xml'
+                );
             }
         }
     }
@@ -194,7 +100,7 @@ class DumpManager
      */
     protected function validateAllSiteMap()
     {
-        $this->siteMapIndexEntity->validate();
+        $this->dumpEntity->getSiteMapIndexEntity()->validate();
     }
 
     /**
@@ -202,7 +108,7 @@ class DumpManager
      */
     protected function saveSiteMap()
     {
-        foreach ($this->siteMapIndexEntity->getSiteMapCollection() as $siteMapEntity) {
+        foreach ($this->dumpEntity->getSiteMapIndexEntity()->getSiteMapCollection() as $siteMapEntity) {
             $this->saveFile($siteMapEntity->getLoc(), $siteMapEntity->getXml());
         }
 
@@ -213,7 +119,7 @@ class DumpManager
      */
     protected function saveSiteMapIndex()
     {
-        $this->saveFile($this->path . '/' . 'sitemap.xml', $this->siteMapIndexEntity->getXml());
+        $this->saveFile($this->dumpEntity->getPath() . '/' . 'sitemap.xml', $this->dumpEntity->getSiteMapIndexEntity()->getXml());
     }
 
     /**
