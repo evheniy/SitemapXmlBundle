@@ -226,4 +226,6 @@ class DumpManager
         $fileContent;
         //TODO save file
     }
+
+    //TODO DumpEntity, DumpValidation, FileSaver...
 }
