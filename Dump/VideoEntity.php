@@ -12,11 +12,9 @@ use Evheniy\SitemapXmlBundle\Validate\VideoEntity as Entity;
 class VideoEntity extends Entity implements DumpEntityInterface
 {
     /**
-     * @param array $params
-     *
      * @return string
      */
-    public function getXml(array $params = array())
+    public function getXml()
     {
         // TODO: Implement dump() method.
     }

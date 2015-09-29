@@ -123,7 +123,7 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLastmod()
     {
-        $testValue = 'testLastmod';
+        $testValue = new \DateTime();
         $lastmod = $this->reflectionClass->getProperty('lastmod');
         $lastmod->setAccessible(true);
         $lastmod->setValue($this->locationEntity, $testValue);
@@ -135,7 +135,7 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetLastmod()
     {
-        $testValue = 'testLastmod';
+        $testValue = new \DateTime();
         $this->locationEntity->setLastmod($testValue);
         $lastmod = $this->reflectionClass->getProperty('lastmod');
         $lastmod->setAccessible(true);

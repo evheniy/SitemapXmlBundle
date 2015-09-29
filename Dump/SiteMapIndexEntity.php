@@ -13,11 +13,9 @@ use Evheniy\SitemapXmlBundle\Validate\SiteMapIndexEntity as Entity;
 class SiteMapIndexEntity extends Entity implements DumpEntityInterface
 {
     /**
-     * @param array $params
-     *
      * @return string
      */
-    public function getXml(array $params = array())
+    public function getXml()
     {
         $siteMapIndexText = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
         $siteMapIndexText .= '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';

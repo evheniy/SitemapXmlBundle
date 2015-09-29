@@ -62,6 +62,6 @@ class ImageEntityTest extends \PHPUnit_Framework_TestCase
         $this->imageEntity
             ->setLocation('http://test.com/')
             ->setLicense('http://test.com/license.pdf');
-         $this->assertEquals($this->imageEntity->validate(), $this->imageEntity);
+        $this->assertEquals($this->imageEntity->validate(), $this->imageEntity);
     }
 }

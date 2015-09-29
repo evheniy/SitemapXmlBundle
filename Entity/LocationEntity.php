@@ -18,7 +18,7 @@ class LocationEntity extends AbstractEntity
      */
     protected $location;
     /**
-     * @var string
+     * @var \DateTime
      */
     protected $lastmod;
     /**
@@ -49,6 +49,7 @@ class LocationEntity extends AbstractEntity
     {
         $this->imageCollection = new ImageCollection();
         $this->videoCollection = new VideoCollection();
+        $this->lastmod = new \DateTime();
     }
 
     /**
@@ -112,7 +113,7 @@ class LocationEntity extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getLastmod()
     {
@@ -121,7 +122,7 @@ class LocationEntity extends AbstractEntity
     }
 
     /**
-     * @param string $lastmod
+     * @param \DateTime $lastmod
      * @return $this
      */
     public function setLastmod($lastmod)

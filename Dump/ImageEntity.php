@@ -13,11 +13,9 @@ use Evheniy\SitemapXmlBundle\Validate\ImageEntity as Entity;
 class ImageEntity extends Entity implements DumpEntityInterface
 {
     /**
-     * @param array $params
-     *
      * @return string
      */
-    public function getXml(array $params = array())
+    public function getXml()
     {
         $imageText = '<image:image>';
         $imageText .= '<image:loc>' . $this->loc . '</image:loc>';

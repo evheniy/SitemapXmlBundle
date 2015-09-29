@@ -14,16 +14,14 @@ use Evheniy\SitemapXmlBundle\Validate\LocationEntity as Entity;
 class LocationEntity extends Entity implements DumpEntityInterface
 {
     /**
-     * @param array $params
-     *
      * @return string
      */
-    public function getXml(array $params = array())
+    public function getXml()
     {
         $locationText = '<url>';
         $locationText .= '<loc>' . $this->location . '</loc>';
         if (!empty($this->lastmod)) {
-            $locationText .= '<lastmod>' . $this->lastmod . '</lastmod>';
+            $locationText .= '<lastmod>' . $this->lastmod->format('Y-m-d') . '</lastmod>';
         }
         if (!empty($this->changefreq)) {
             $locationText .= '<changefreq>' . $this->changefreq . '</changefreq>';
@@ -35,10 +33,10 @@ class LocationEntity extends Entity implements DumpEntityInterface
             $locationText .= '<mobile:mobile/>';
         }
         foreach ($this->imageCollection as $imageEntity) {
-            $locationText .= $imageEntity->toXml();
+            $locationText .= $imageEntity->getXml();
         }
         foreach ($this->videoCollection as $videoEntity) {
-            $locationText .= $videoEntity->toXml();
+            $locationText .= $videoEntity->getXml();
         }
         $locationText .= '</url>';
 
