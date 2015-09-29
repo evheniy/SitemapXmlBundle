@@ -2,6 +2,7 @@
 
 namespace Evheniy\SitemapXmlBundle\Service;
 
+use Evheniy\SitemapXmlBundle\Dump\DumpEntity;
 use Evheniy\SitemapXmlBundle\Dump\DumpManager;
 use Evheniy\SitemapXmlBundle\Dump\ImageEntity;
 use Evheniy\SitemapXmlBundle\Dump\LocationEntity;
@@ -63,5 +64,13 @@ class ServiceManager
     public function createDumpManager($rootDir)
     {
         return new DumpManager(realpath($rootDir . '/../web'));
+    }
+
+    /**
+     * @return DumpEntity
+     */
+    public function createDumpEntity()
+    {
+        return new DumpEntity();
     }
 }
