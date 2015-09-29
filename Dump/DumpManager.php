@@ -1,6 +1,7 @@
 <?php
 
 namespace Evheniy\SitemapXmlBundle\Dump;
+
 use Evheniy\SitemapXmlBundle\Exception\DumpException;
 
 /**
@@ -33,6 +34,10 @@ class DumpManager
      * @var SiteMapIndexEntity
      */
     protected $siteMapIndexEntity;
+    /**
+     * @var SiteMapEntity
+     */
+    protected $siteMapEntity;
 
     /**
      * @param string $webDir
@@ -107,14 +112,37 @@ class DumpManager
     }
 
     /**
+     * @param SiteMapEntity $siteMapEntity
+     *
+     * @return $this
+     */
+    public function setSiteMapEntity(SiteMapEntity $siteMapEntity)
+    {
+        $this->siteMapEntity = $siteMapEntity;
+
+        return $this;
+    }
+
+    /**
      * @throws DumpException
      */
-    public function dump()
+    public function dumpSiteMapIndex()
     {
         $this->validateDomain();
+        $this->validateSiteMapIndex();
         $this->validateAllSiteMap();
         $this->saveSiteMap();
         $this->saveSiteMapIndex();
+    }
+
+    /**
+     * @throws DumpException
+     */
+    public function dumpSiteMap()
+    {
+        $this->validateDomain();
+        $this->validateSiteMap();
+        $this->saveSiteMap();
     }
 
     /**
@@ -124,6 +152,26 @@ class DumpManager
     {
         if (empty($this->domain)) {
             throw new DumpException('Empty domain!');
+        }
+    }
+
+    /**
+     * @throws DumpException
+     */
+    protected function validateSiteMapIndex()
+    {
+        if (empty($this->siteMapIndexEntity)) {
+            throw new DumpException('Empty SiteMapIndexEntity!');
+        }
+    }
+
+    /**
+     * @throws DumpException
+     */
+    protected function validateSiteMap()
+    {
+        if (empty($this->siteMapEntity)) {
+            throw new DumpException('Empty SiteMapEntity!');
         }
     }
 
