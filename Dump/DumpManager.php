@@ -19,7 +19,7 @@ class DumpManager
      * @param DumpEntity $dumpEntity
      * @return $this
      */
-    protected function setEntity(DumpEntity $dumpEntity)
+    public function setEntity(DumpEntity $dumpEntity)
     {
         $this->dumpEntity = $dumpEntity;
 
@@ -108,10 +108,15 @@ class DumpManager
      */
     protected function saveSiteMap()
     {
-        foreach ($this->dumpEntity->getSiteMapIndexEntity()->getSiteMapCollection() as $siteMapEntity) {
-            $this->dumpEntity->saveFile($siteMapEntity->getLoc(), $siteMapEntity->getXml());
+        $siteMapEntity = $this->dumpEntity->getSiteMapEntity();
+        $siteMapIndexEntity = $this->dumpEntity->getSiteMapIndexEntity();
+        if (!empty($siteMapEntity)) {
+            $this->dumpEntity->saveFile($this->dumpEntity->getPath() . '/' . 'sitemap.xml', $siteMapEntity->getXml());
+        } elseif (!empty($siteMapIndexEntity)) {
+            foreach ($siteMapIndexEntity->getSiteMapCollection() as $siteMapEntity) {
+                $this->dumpEntity->saveFile($siteMapEntity->getLoc(), $siteMapEntity->getXml());
+            }
         }
-
     }
 
     /**

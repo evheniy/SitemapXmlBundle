@@ -57,13 +57,11 @@ class ServiceManager
     }
 
     /**
-     * @param string $rootDir
-     *
      * @return DumpManager
      */
-    public function createDumpManager($rootDir)
+    public function createDumpManager()
     {
-        return new DumpManager(realpath($rootDir . '/../web'));
+        return new DumpManager();
     }
 
     /**
