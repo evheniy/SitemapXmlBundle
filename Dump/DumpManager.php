@@ -109,7 +109,7 @@ class DumpManager
     protected function saveSiteMap()
     {
         foreach ($this->dumpEntity->getSiteMapIndexEntity()->getSiteMapCollection() as $siteMapEntity) {
-            $this->saveFile($siteMapEntity->getLoc(), $siteMapEntity->getXml());
+            $this->dumpEntity->saveFile($siteMapEntity->getLoc(), $siteMapEntity->getXml());
         }
 
     }
@@ -119,19 +119,6 @@ class DumpManager
      */
     protected function saveSiteMapIndex()
     {
-        $this->saveFile($this->dumpEntity->getPath() . '/' . 'sitemap.xml', $this->dumpEntity->getSiteMapIndexEntity()->getXml());
+        $this->dumpEntity->saveFile($this->dumpEntity->getPath() . '/' . 'sitemap.xml', $this->dumpEntity->getSiteMapIndexEntity()->getXml());
     }
-
-    /**
-     * @param string $filePath
-     * @param string $fileContent
-     */
-    protected function saveFile($filePath, $fileContent)
-    {
-        $filePath;
-        $fileContent;
-        //TODO save file
-    }
-
-    //TODO DumpEntity, DumpValidation, FileSaver...
 }

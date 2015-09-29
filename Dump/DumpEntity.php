@@ -11,10 +11,11 @@ use Evheniy\SitemapXmlBundle\Validate\DumpEntity as Entity;
 class DumpEntity extends Entity implements DumpFileInterface
 {
     /**
-     *
+     * @param string $filePath
+     * @param string $fileContent
      */
-    public function dump()
+    public function saveFile($filePath, $fileContent)
     {
-
+        // TODO: Implement saveFile() method.
     }
 }

@@ -9,7 +9,8 @@ namespace Evheniy\SitemapXmlBundle\Dump;
 interface DumpFileInterface
 {
     /**
-     *
+     * @param string $filePath
+     * @param string $fileContent
      */
-    public function dump();
+    public function saveFile($filePath, $fileContent);
 }
