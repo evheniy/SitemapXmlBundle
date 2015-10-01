@@ -6,7 +6,10 @@ use Evheniy\SitemapXmlBundle\Entity\DumpEntity;
 use Evheniy\SitemapXmlBundle\Entity\SiteMapEntity;
 use Evheniy\SitemapXmlBundle\Entity\SiteMapIndexEntity;
 
-
+/**
+ * Class DumpEntityTest
+ * @package Evheniy\SitemapXmlBundle\Tests\Entity
+ */
 class DumpEntityTest extends \PHPUnit_Framework_TestCase
 {
     /**
