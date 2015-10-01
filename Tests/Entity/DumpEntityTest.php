@@ -162,9 +162,9 @@ class DumpEntityTest extends \PHPUnit_Framework_TestCase
     {
         $siteMapIndexEntity = new SiteMapIndexEntity();
         $this->dumpEntity->setSiteMapIndexEntity($siteMapIndexEntity);
-        $siteMapIndexEntityReflection = $this->reflectionClass->getProperty('siteMapIndexEntity');
-        $siteMapIndexEntityReflection->setAccessible(true);
-        $this->assertEquals($siteMapIndexEntityReflection->getValue($this->dumpEntity), $siteMapIndexEntity);
+        $siteMapIndexReflection = $this->reflectionClass->getProperty('siteMapIndexEntity');
+        $siteMapIndexReflection->setAccessible(true);
+        $this->assertEquals($siteMapIndexReflection->getValue($this->dumpEntity), $siteMapIndexEntity);
         $this->assertEquals($this->dumpEntity->getSiteMapIndexEntity(), $siteMapIndexEntity);
     }
 
@@ -174,9 +174,9 @@ class DumpEntityTest extends \PHPUnit_Framework_TestCase
     public function testGetSiteMapIndexEntity()
     {
         $siteMapIndexEntity = new SiteMapIndexEntity();
-        $siteMapIndexEntityReflection = $this->reflectionClass->getProperty('siteMapIndexEntity');
-        $siteMapIndexEntityReflection->setAccessible(true);
-        $siteMapIndexEntityReflection->setValue($this->dumpEntity, $siteMapIndexEntity);
+        $siteMapIndexReflection = $this->reflectionClass->getProperty('siteMapIndexEntity');
+        $siteMapIndexReflection->setAccessible(true);
+        $siteMapIndexReflection->setValue($this->dumpEntity, $siteMapIndexEntity);
         $this->assertEquals($this->dumpEntity->getSiteMapIndexEntity(), $siteMapIndexEntity);
     }
 
@@ -187,9 +187,9 @@ class DumpEntityTest extends \PHPUnit_Framework_TestCase
     {
         $siteMapEntity = new SiteMapEntity();
         $this->dumpEntity->setSiteMapEntity($siteMapEntity);
-        $siteMapEntityReflection = $this->reflectionClass->getProperty('siteMapEntity');
-        $siteMapEntityReflection->setAccessible(true);
-        $this->assertEquals($siteMapEntityReflection->getValue($this->dumpEntity), $siteMapEntity);
+        $siteMapReflection = $this->reflectionClass->getProperty('siteMapEntity');
+        $siteMapReflection->setAccessible(true);
+        $this->assertEquals($siteMapReflection->getValue($this->dumpEntity), $siteMapEntity);
         $this->assertEquals($this->dumpEntity->getSiteMapEntity(), $siteMapEntity);
     }
 
@@ -199,9 +199,9 @@ class DumpEntityTest extends \PHPUnit_Framework_TestCase
     public function testGetSiteMapEntity()
     {
         $siteMapEntity = new SiteMapEntity();
-        $siteMapEntityReflection = $this->reflectionClass->getProperty('siteMapEntity');
-        $siteMapEntityReflection->setAccessible(true);
-        $siteMapEntityReflection->setValue($this->dumpEntity, $siteMapEntity);
+        $siteMapReflection = $this->reflectionClass->getProperty('siteMapEntity');
+        $siteMapReflection->setAccessible(true);
+        $siteMapReflection->setValue($this->dumpEntity, $siteMapEntity);
         $this->assertEquals($this->dumpEntity->getSiteMapEntity(), $siteMapEntity);
     }
 }
