@@ -5,7 +5,6 @@ namespace Evheniy\SitemapXmlBundle\Dump;
 use Evheniy\SitemapXmlBundle\Exception\DumpException;
 use Evheniy\SitemapXmlBundle\Validate\DumpEntity as Entity;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 /**
  * Class DumpEntity
@@ -30,8 +29,8 @@ class DumpEntity extends Entity implements DumpFileInterface
         }
         try {
             $filesystem->mkdir(dirname($filePath));
-        } catch (IOExceptionInterface $e) {
-            throw new DumpException('An error occurred while creating your directory at ' . $e->getPath());
+        } catch (\Exception $e) {
+            throw new DumpException($e->getMessage());
         }
         $filesystem->dumpFile($filePath, $fileContent);
 
