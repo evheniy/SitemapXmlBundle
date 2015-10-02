@@ -55,6 +55,7 @@ class NewsEntity extends AbstractEntity
      */
     public function getPublicationName()
     {
+
         return $this->publicationName;
     }
 
@@ -74,6 +75,7 @@ class NewsEntity extends AbstractEntity
      */
     public function getPublicationLanguage()
     {
+
         return $this->publicationLanguage;
     }
 
@@ -86,7 +88,6 @@ class NewsEntity extends AbstractEntity
         $this->publicationLanguage = $publicationLanguage;
 
         return $this;
-
     }
 
     /**
@@ -94,6 +95,7 @@ class NewsEntity extends AbstractEntity
      */
     public function getAccess()
     {
+
         return $this->access;
     }
 
@@ -113,6 +115,7 @@ class NewsEntity extends AbstractEntity
      */
     public function getGenres()
     {
+
         return $this->genres;
     }
 
@@ -132,6 +135,7 @@ class NewsEntity extends AbstractEntity
      */
     public function getPublicationDate()
     {
+
         return $this->publicationDate;
     }
 

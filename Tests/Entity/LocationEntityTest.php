@@ -4,6 +4,7 @@ namespace Evheniy\SitemapXmlBundle\Tests\Entity;
 
 use Evheniy\SitemapXmlBundle\Entity\ImageEntity;
 use Evheniy\SitemapXmlBundle\Entity\VideoEntity;
+use Evheniy\SitemapXmlBundle\Entity\NewsEntity;
 use Evheniy\SitemapXmlBundle\Entity\LocationEntity;
 
 /**
@@ -172,6 +173,19 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
+    public function testAddNews()
+    {
+        $newsEntity = new NewsEntity();
+        $this->locationEntity->addNews($newsEntity);
+        $newsCollection = $this->reflectionClass->getProperty('newsCollection');
+        $newsCollection->setAccessible(true);
+        $collection = $newsCollection->getValue($this->locationEntity);
+        $this->assertTrue($collection->contains($newsEntity));
+    }
+
+    /**
+     *
+     */
     public function testIsMobile()
     {
         $isMobile = $this->reflectionClass->getProperty('isMobile');
@@ -217,5 +231,16 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
         $videoCollection = $this->reflectionClass->getProperty('videoCollection');
         $videoCollection->setAccessible(true);
         $this->assertEquals($videoCollection->getValue($this->locationEntity), $this->locationEntity->getVideoCollection());
+    }
+
+    /**
+     *
+     */
+    public function testGetNewsCollection()
+    {
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Collection\NewsCollection', $this->locationEntity->getNewsCollection());
+        $newsCollection = $this->reflectionClass->getProperty('newsCollection');
+        $newsCollection->setAccessible(true);
+        $this->assertEquals($newsCollection->getValue($this->locationEntity), $this->locationEntity->getNewsCollection());
     }
 }

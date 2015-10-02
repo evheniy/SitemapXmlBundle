@@ -4,6 +4,7 @@ namespace Evheniy\SitemapXmlBundle\Entity;
 
 use Evheniy\SitemapXmlBundle\Collection\ImageCollection;
 use Evheniy\SitemapXmlBundle\Collection\VideoCollection;
+use Evheniy\SitemapXmlBundle\Collection\NewsCollection;
 
 /**
  * Class LocationEntity
@@ -41,6 +42,10 @@ class LocationEntity extends AbstractEntity
      * @var VideoCollection
      */
     protected $videoCollection;
+    /**
+     * @var NewsCollection
+     */
+    protected $newsCollection;
 
     /**
      *
@@ -49,6 +54,7 @@ class LocationEntity extends AbstractEntity
     {
         $this->imageCollection = new ImageCollection();
         $this->videoCollection = new VideoCollection();
+        $this->newsCollection = new NewsCollection();
         $this->lastmod = new \DateTime();
     }
 
@@ -155,6 +161,17 @@ class LocationEntity extends AbstractEntity
     }
 
     /**
+     * @param NewsEntity $newsEntity
+     * @return $this
+     */
+    public function addNews(NewsEntity $newsEntity)
+    {
+        $this->newsCollection->attach($newsEntity);
+
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     public function isMobile()
@@ -188,5 +205,13 @@ class LocationEntity extends AbstractEntity
     public function getVideoCollection()
     {
         return $this->videoCollection;
+    }
+
+    /**
+     * @return NewsCollection
+     */
+    public function getNewsCollection()
+    {
+        return $this->newsCollection;
     }
 }
