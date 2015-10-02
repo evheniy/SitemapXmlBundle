@@ -76,6 +76,16 @@ class ServiceManagerTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
+    public function testCreateNewsEntity()
+    {
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Entity\NewsEntity', $this->serviceManager->createNewsEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Validate\NewsEntity', $this->serviceManager->createNewsEntity());
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Dump\NewsEntity', $this->serviceManager->createNewsEntity());
+    }
+
+    /**
+     *
+     */
     public function testCreateDumpManager()
     {
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Dump\DumpManager', $this->serviceManager->createDumpManager('path'));

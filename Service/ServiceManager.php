@@ -9,6 +9,7 @@ use Evheniy\SitemapXmlBundle\Dump\LocationEntity;
 use Evheniy\SitemapXmlBundle\Dump\SiteMapEntity;
 use Evheniy\SitemapXmlBundle\Dump\SiteMapIndexEntity;
 use Evheniy\SitemapXmlBundle\Dump\VideoEntity;
+use Evheniy\SitemapXmlBundle\Dump\NewsEntity;
 
 /**
  * Class ServiceManager
@@ -54,6 +55,14 @@ class ServiceManager
     public function createVideoEntity()
     {
         return new VideoEntity();
+    }
+
+    /**
+     * @return NewsEntity
+     */
+    public function createNewsEntity()
+    {
+        return new NewsEntity();
     }
 
     /**
