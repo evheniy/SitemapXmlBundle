@@ -139,7 +139,7 @@ class DumpManagerTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function testValidateAllSiteMap()
+    public function testValidateAllSiteMapIndex()
     {
         $siteMapEntity = new SiteMapEntity();
         $siteMapIndexEntity = new SiteMapIndexEntity();
@@ -150,6 +150,20 @@ class DumpManagerTest extends \PHPUnit_Framework_TestCase
         $validateAllSiteMap = $this->reflectionClass->getMethod('validateAllSiteMap');
         $validateAllSiteMap->setAccessible(true);
         $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Loc" field must be set!');
+        $validateAllSiteMap->invoke($this->dumpManager);
+    }
+
+    /**
+     *
+     */
+    public function testValidateAllSiteMap()
+    {
+        $siteMapEntity = new SiteMapEntity();
+        $dumpEntity = new DumpEntity();
+        $dumpEntity->setSiteMapEntity($siteMapEntity);
+        $this->dumpManager->setEntity($dumpEntity);
+        $validateAllSiteMap = $this->reflectionClass->getMethod('validateAllSiteMap');
+        $validateAllSiteMap->setAccessible(true);
         $validateAllSiteMap->invoke($this->dumpManager);
     }
 
