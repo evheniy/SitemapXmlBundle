@@ -6,6 +6,7 @@ use Evheniy\SitemapXmlBundle\Dump\DumpEntity;
 use Evheniy\SitemapXmlBundle\Dump\DumpManager;
 use Evheniy\SitemapXmlBundle\Dump\SiteMapEntity;
 use Evheniy\SitemapXmlBundle\Dump\SiteMapIndexEntity;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Class DumpManagerTest
@@ -48,7 +49,18 @@ class DumpManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDumpSiteMapIndex()
     {
-        $this->markTestIncomplete();
+        $dumpSiteMapIndex = $this->reflectionClass->getMethod('dumpSiteMapIndex');
+        $dumpSiteMapIndex->setAccessible(true);
+        $filesystem = new Filesystem();
+
+        $siteMapIndexEntity = new SiteMapIndexEntity();
+        $dumpEntity = new DumpEntity();
+        $dumpEntity->setSiteMapIndexEntity($siteMapIndexEntity)->setWebDir(__DIR__)->setDomain('test');
+        $this->dumpManager->setEntity($dumpEntity);
+
+        $dumpSiteMapIndex->invoke($this->dumpManager);
+        $this->assertTrue($filesystem->exists(__DIR__ . '/sitemap.xml'));
+        $filesystem->remove(__DIR__ . '/sitemap.xml');
     }
 
     /**
@@ -56,7 +68,18 @@ class DumpManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDumpSiteMap()
     {
-        $this->markTestIncomplete();
+        $dumpSiteMap = $this->reflectionClass->getMethod('dumpSiteMap');
+        $dumpSiteMap->setAccessible(true);
+        $filesystem = new Filesystem();
+
+        $siteMapEntity = new SiteMapEntity();
+        $dumpEntity = new DumpEntity();
+        $dumpEntity->setSiteMapEntity($siteMapEntity)->setWebDir(__DIR__)->setDomain('test');
+        $this->dumpManager->setEntity($dumpEntity);
+
+        $dumpSiteMap->invoke($this->dumpManager);
+        $this->assertTrue($filesystem->exists(__DIR__ . '/sitemap.xml'));
+        $filesystem->remove(__DIR__ . '/sitemap.xml');
     }
 
     /**
@@ -102,15 +125,15 @@ class DumpManagerTest extends \PHPUnit_Framework_TestCase
         $siteMapIndexEntity = new SiteMapIndexEntity();
         $siteMapIndexEntity->addSiteMap($siteMapEntity);
         $dumpEntity = new DumpEntity();
-        $dumpEntity->setSiteMapIndexEntity($siteMapIndexEntity);
+        $dumpEntity->setSiteMapIndexEntity($siteMapIndexEntity)->setDomain('test');
         $this->dumpManager->setEntity($dumpEntity);
         $setSiteMapLocation = $this->reflectionClass->getMethod('setSiteMapLocation');
         $setSiteMapLocation->setAccessible(true);
         $setSiteMapLocation->invoke($this->dumpManager);
-        $this->assertEquals($siteMapEntity->getLoc(), 'http://sitemap0.xml');
-        $siteMapEntity->setLoc('http://sitemap.xml');
+        $this->assertEquals($siteMapEntity->getLoc(), 'http://test/sitemap0.xml');
+        $siteMapEntity->setLoc('http://test/sitemap.xml');
         $setSiteMapLocation->invoke($this->dumpManager);
-        $this->assertEquals($siteMapEntity->getLoc(), 'http://sitemap.xml');
+        $this->assertEquals($siteMapEntity->getLoc(), 'http://test/sitemap.xml');
     }
 
     /**
@@ -133,9 +156,63 @@ class DumpManagerTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function testSaveSiteMap()
+    public function testSaveSiteMapWithSiteMapEntity()
     {
-        $this->markTestIncomplete();
+        $saveSiteMap = $this->reflectionClass->getMethod('saveSiteMap');
+        $saveSiteMap->setAccessible(true);
+        $filesystem = new Filesystem();
+
+        $dumpEntity = new DumpEntity();
+        $dumpEntity->setSiteMapEntity(new SiteMapEntity())->setWebDir(__DIR__)->setDomain('test');
+        $this->dumpManager->setEntity($dumpEntity);
+
+        $saveSiteMap->invoke($this->dumpManager);
+        $this->assertTrue($filesystem->exists(__DIR__ . '/sitemap.xml'));
+        $filesystem->remove(__DIR__ . '/sitemap.xml');
+    }
+
+    /**
+     *
+     */
+    public function testSaveSiteMapWithSiteMapEntityAndLocation()
+    {
+        $saveSiteMap = $this->reflectionClass->getMethod('saveSiteMap');
+        $saveSiteMap->setAccessible(true);
+        $filesystem = new Filesystem();
+
+        $dumpEntity = new DumpEntity();
+        $siteMapEntity = new SiteMapEntity();
+        $siteMapEntity->setLoc('http://test/sitemap.xml');
+        $dumpEntity->setSiteMapEntity($siteMapEntity)->setWebDir(__DIR__)->setDomain('test');
+        $this->dumpManager->setEntity($dumpEntity);
+
+        $saveSiteMap->invoke($this->dumpManager);
+        $this->assertTrue($filesystem->exists(__DIR__ . '/sitemap.xml'));
+        $filesystem->remove(__DIR__ . '/sitemap.xml');
+    }
+
+    /**
+     *
+     */
+    public function testSaveSiteMapForSiteMapIndexEntity()
+    {
+        $saveSiteMap = $this->reflectionClass->getMethod('saveSiteMap');
+        $saveSiteMap->setAccessible(true);
+        $filesystem = new Filesystem();
+
+        $siteMapIndexEntity = new SiteMapIndexEntity();
+        $siteMapIndexEntity->addSiteMap(new SiteMapEntity());
+        $dumpEntity = new DumpEntity();
+        $dumpEntity->setSiteMapIndexEntity($siteMapIndexEntity)->setWebDir(__DIR__)->setDomain('test');
+        $this->dumpManager->setEntity($dumpEntity);
+
+        $setSiteMapLocation = $this->reflectionClass->getMethod('setSiteMapLocation');
+        $setSiteMapLocation->setAccessible(true);
+        $setSiteMapLocation->invoke($this->dumpManager);
+
+        $saveSiteMap->invoke($this->dumpManager);
+        $this->assertTrue($filesystem->exists(__DIR__ . '/sitemap0.xml'));
+        $filesystem->remove(__DIR__ . '/sitemap0.xml');
     }
 
     /**
@@ -143,6 +220,17 @@ class DumpManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSaveSiteMapIndex()
     {
-        $this->markTestIncomplete();
+        $saveSiteMapIndex = $this->reflectionClass->getMethod('saveSiteMapIndex');
+        $saveSiteMapIndex->setAccessible(true);
+        $filesystem = new Filesystem();
+
+        $siteMapIndexEntity = new SiteMapIndexEntity();
+        $dumpEntity = new DumpEntity();
+        $dumpEntity->setSiteMapIndexEntity($siteMapIndexEntity)->setWebDir(__DIR__)->setDomain('test');
+        $this->dumpManager->setEntity($dumpEntity);
+
+        $saveSiteMapIndex->invoke($this->dumpManager);
+        $this->assertTrue($filesystem->exists(__DIR__ . '/sitemap.xml'));
+        $filesystem->remove(__DIR__ . '/sitemap.xml');
     }
 }

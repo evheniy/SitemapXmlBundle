@@ -84,7 +84,7 @@ class DumpManager
                     $this->dumpEntity->getProtocol() .
                     '://' .
                     $this->dumpEntity->getDomain() .
-                    ($this->dumpEntity->getPath() !== '' ? '/' . $this->dumpEntity->getPath() . '/' : '') .
+                    ($this->dumpEntity->getPath() !== '' ? '/' . $this->dumpEntity->getPath() . '/' : '/') .
                     'sitemap' .
                     $counter++ .
                     '.xml'
@@ -98,7 +98,13 @@ class DumpManager
      */
     protected function validateAllSiteMap()
     {
-        $this->dumpEntity->getSiteMapIndexEntity()->validate();
+        $siteMapEntity = $this->dumpEntity->getSiteMapEntity();
+        $siteMapIndexEntity = $this->dumpEntity->getSiteMapIndexEntity();
+        if (!empty($siteMapEntity)) {
+            $siteMapEntity->validate();
+        } elseif (!empty($siteMapIndexEntity)) {
+            $siteMapIndexEntity->validate();
+        }
     }
 
     /**
@@ -109,10 +115,25 @@ class DumpManager
         $siteMapEntity = $this->dumpEntity->getSiteMapEntity();
         $siteMapIndexEntity = $this->dumpEntity->getSiteMapIndexEntity();
         if (!empty($siteMapEntity)) {
-            $this->dumpEntity->saveFile($this->dumpEntity->getPath() . '/' . 'sitemap.xml', $siteMapEntity->getXml());
+            $location = $siteMapEntity->getLoc();
+            if (empty($location)) {
+                $this->dumpEntity->saveFile(
+                    $this->dumpEntity->getWebDir().
+                    '/' .
+                    ($this->dumpEntity->getPath() !== '' ? '/' . $this->dumpEntity->getPath() . '/' : '/') .
+                    'sitemap.xml',
+                    $siteMapEntity->getXml()
+                );
+            } else {
+                $location = explode($this->dumpEntity->getDomain() . '/', $location);
+                $location = $this->dumpEntity->getWebDir(). '/' . $location[1];
+                $this->dumpEntity->saveFile($location, $siteMapEntity->getXml());
+            }
         } elseif (!empty($siteMapIndexEntity)) {
             foreach ($siteMapIndexEntity->getSiteMapCollection() as $siteMapEntity) {
-                $this->dumpEntity->saveFile($siteMapEntity->getLoc(), $siteMapEntity->getXml());
+                $location = explode($this->dumpEntity->getDomain() . '/', $siteMapEntity->getLoc());
+                $location = $this->dumpEntity->getWebDir(). '/' . $location[1];
+                $this->dumpEntity->saveFile($location, $siteMapEntity->getXml());
             }
         }
     }
@@ -123,7 +144,10 @@ class DumpManager
     protected function saveSiteMapIndex()
     {
         $this->dumpEntity->saveFile(
-            $this->dumpEntity->getPath() . '/' . 'sitemap.xml',
+            $this->dumpEntity->getWebDir().
+            '/' .
+            ($this->dumpEntity->getPath() !== '' ? '/' . $this->dumpEntity->getPath() . '/' : '/') .
+            'sitemap.xml',
             $this->dumpEntity->getSiteMapIndexEntity()->getXml()
         );
     }
