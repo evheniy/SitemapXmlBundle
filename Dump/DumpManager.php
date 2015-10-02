@@ -84,9 +84,7 @@ class DumpManager
                     $this->dumpEntity->getProtocol() .
                     '://' .
                     $this->dumpEntity->getDomain() .
-                    '/' .
-                    $this->dumpEntity->getPath() .
-                    '/' .
+                    ($this->dumpEntity->getPath() !== '' ? '/' . $this->dumpEntity->getPath() . '/' : '') .
                     'sitemap' .
                     $counter++ .
                     '.xml'
@@ -124,6 +122,9 @@ class DumpManager
      */
     protected function saveSiteMapIndex()
     {
-        $this->dumpEntity->saveFile($this->dumpEntity->getPath() . '/' . 'sitemap.xml', $this->dumpEntity->getSiteMapIndexEntity()->getXml());
+        $this->dumpEntity->saveFile(
+            $this->dumpEntity->getPath() . '/' . 'sitemap.xml',
+            $this->dumpEntity->getSiteMapIndexEntity()->getXml()
+        );
     }
 }
