@@ -131,7 +131,7 @@ class LocationEntity extends AbstractEntity
      * @param \DateTime $lastmod
      * @return $this
      */
-    public function setLastmod($lastmod)
+    public function setLastmod(\DateTime $lastmod)
     {
         $this->lastmod = $lastmod;
 

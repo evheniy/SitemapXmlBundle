@@ -223,7 +223,7 @@ class VideoEntity extends AbstractEntity
      * @param \DateTime $expirationDate
      * @return $this
      */
-    public function setExpirationDate($expirationDate)
+    public function setExpirationDate(\DateTime $expirationDate)
     {
         $this->expirationDate = $expirationDate;
 
@@ -280,7 +280,7 @@ class VideoEntity extends AbstractEntity
      * @param \DateTime $publicationDate
      * @return $this
      */
-    public function setPublicationDate($publicationDate)
+    public function setPublicationDate(\DateTime $publicationDate)
     {
         $this->publicationDate = $publicationDate;
 

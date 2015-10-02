@@ -32,19 +32,6 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function testIsValidLastmod()
-    {
-        $this->locationEntity->setLastmod('test');
-        $isValidLastmod = $this->reflectionClass->getMethod('isValidLastmod');
-        $isValidLastmod->setAccessible(true);
-        $this->assertFalse($isValidLastmod->invoke($this->locationEntity));
-        $this->locationEntity->setLastmod(new \DateTime());
-        $this->assertTrue($isValidLastmod->invoke($this->locationEntity));
-    }
-
-    /**
-     *
-     */
     public function testIsValidChangefreq()
     {
         $this->locationEntity->setChangefreq('test');
@@ -102,18 +89,6 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
     {
         $this->locationEntity->setLocation('test');
         $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Location" field must be valid url!');
-        $this->locationEntity->validate();
-    }
-
-    /**
-     *
-     */
-    public function testValidateWrongLastmod()
-    {
-        $this->locationEntity
-            ->setLocation('http://test.com/')
-            ->setLastmod('test');
-        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Lastmod" field should be \DateTime instance!');
         $this->locationEntity->validate();
     }
 

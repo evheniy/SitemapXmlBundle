@@ -31,9 +31,6 @@ class LocationEntity extends Entity implements ValidateEntityInterface
         if (filter_var($this->location, FILTER_VALIDATE_URL) === false) {
             throw new ValidateEntityException('"Location" field must be valid url!');
         }
-        if (!empty($this->lastmod) && !$this->isValidLastmod()) {
-            throw new ValidateEntityException('"Lastmod" field should be \DateTime instance!');
-        }
         if (!empty($this->changefreq) && !$this->isValidChangefreq()) {
             throw new ValidateEntityException('"Changefreq" field should be in [\'always\', \'hourly\', \'daily\', \'weekly\', \'monthly\', \'yearly\', \'never\']!');
         }
@@ -48,15 +45,6 @@ class LocationEntity extends Entity implements ValidateEntityInterface
         }
 
         return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    protected function isValidLastmod()
-    {
-
-        return $this->lastmod instanceof \DateTime;
     }
 
     /**

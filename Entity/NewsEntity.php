@@ -143,7 +143,7 @@ class NewsEntity extends AbstractEntity
      * @param \DateTime $publicationDate
      * @return $this
      */
-    public function setPublicationDate($publicationDate)
+    public function setPublicationDate(\DateTime $publicationDate)
     {
         $this->publicationDate = $publicationDate;
 
