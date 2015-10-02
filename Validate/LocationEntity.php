@@ -43,6 +43,12 @@ class LocationEntity extends Entity implements ValidateEntityInterface
         foreach ($this->imageCollection as $imageEntity) {
             $imageEntity->validate();
         }
+        foreach ($this->videoCollection as $videoEntity) {
+            $videoEntity->validate();
+        }
+        foreach ($this->newsCollection as $newsEntity) {
+            $newsEntity->validate();
+        }
 
         return $this;
     }

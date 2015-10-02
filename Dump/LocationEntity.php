@@ -38,6 +38,9 @@ class LocationEntity extends Entity implements DumpEntityInterface
         foreach ($this->videoCollection as $videoEntity) {
             $locationText .= $videoEntity->getXml();
         }
+        foreach ($this->newsCollection as $newsEntity) {
+            $locationText .= $newsEntity->getXml();
+        }
         $locationText .= '</url>';
 
         return $locationText;

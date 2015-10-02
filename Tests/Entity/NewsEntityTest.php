@@ -33,7 +33,11 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPublicationName()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testPublicationName';
+        $publicationName = $this->reflectionClass->getProperty('publicationName');
+        $publicationName->setAccessible(true);
+        $publicationName->setValue($this->newsEntity, $testValue);
+        $this->assertEquals($this->newsEntity->getPublicationName(), $testValue);
     }
 
     /**
@@ -41,7 +45,12 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetPublicationName()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testPublicationName';
+        $this->newsEntity->setPublicationName($testValue);
+        $publicationName = $this->reflectionClass->getProperty('publicationName');
+        $publicationName->setAccessible(true);
+        $this->assertEquals($publicationName->getValue($this->newsEntity), $testValue);
+        $this->assertEquals($this->newsEntity->getPublicationName(), $testValue);
     }
 
     /**
@@ -49,7 +58,11 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPublicationLanguage()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testPublicationLanguage';
+        $publicationLanguage = $this->reflectionClass->getProperty('publicationLanguage');
+        $publicationLanguage->setAccessible(true);
+        $publicationLanguage->setValue($this->newsEntity, $testValue);
+        $this->assertEquals($this->newsEntity->getPublicationLanguage(), $testValue);
     }
 
     /**
@@ -57,7 +70,12 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetPublicationLanguage()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testPublicationLanguage';
+        $this->newsEntity->setPublicationLanguage($testValue);
+        $publicationLanguage = $this->reflectionClass->getProperty('publicationLanguage');
+        $publicationLanguage->setAccessible(true);
+        $this->assertEquals($publicationLanguage->getValue($this->newsEntity), $testValue);
+        $this->assertEquals($this->newsEntity->getPublicationLanguage(), $testValue);
     }
 
     /**
@@ -65,7 +83,11 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetAccess()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testAccess';
+        $access = $this->reflectionClass->getProperty('access');
+        $access->setAccessible(true);
+        $access->setValue($this->newsEntity, $testValue);
+        $this->assertEquals($this->newsEntity->getAccess(), $testValue);
     }
 
     /**
@@ -73,7 +95,12 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetAccess()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testAccess';
+        $this->newsEntity->setAccess($testValue);
+        $access = $this->reflectionClass->getProperty('access');
+        $access->setAccessible(true);
+        $this->assertEquals($access->getValue($this->newsEntity), $testValue);
+        $this->assertEquals($this->newsEntity->getAccess(), $testValue);
     }
 
     /**
@@ -81,7 +108,11 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetGenres()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testGenres';
+        $genres = $this->reflectionClass->getProperty('genres');
+        $genres->setAccessible(true);
+        $genres->setValue($this->newsEntity, $testValue);
+        $this->assertEquals($this->newsEntity->getGenres(), $testValue);
     }
 
     /**
@@ -89,7 +120,12 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGenres()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testGenres';
+        $this->newsEntity->setGenres($testValue);
+        $genres = $this->reflectionClass->getProperty('genres');
+        $genres->setAccessible(true);
+        $this->assertEquals($genres->getValue($this->newsEntity), $testValue);
+        $this->assertEquals($this->newsEntity->getGenres(), $testValue);
     }
 
     /**
@@ -97,7 +133,11 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPublicationDate()
     {
-        $this->markTestIncomplete();
+        $testValue = new \DateTime();
+        $publicationDate = $this->reflectionClass->getProperty('publicationDate');
+        $publicationDate->setAccessible(true);
+        $publicationDate->setValue($this->newsEntity, $testValue);
+        $this->assertEquals($this->newsEntity->getPublicationDate(), $testValue);
     }
 
     /**
@@ -105,7 +145,12 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetPublicationDate()
     {
-        $this->markTestIncomplete();
+        $testValue = new \DateTime();
+        $this->newsEntity->setPublicationDate($testValue);
+        $publicationDate = $this->reflectionClass->getProperty('publicationDate');
+        $publicationDate->setAccessible(true);
+        $this->assertEquals($publicationDate->getValue($this->newsEntity), $testValue);
+        $this->assertEquals($this->newsEntity->getPublicationDate(), $testValue);
     }
 
     /**
@@ -113,7 +158,11 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetTitle()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testTitle';
+        $title = $this->reflectionClass->getProperty('title');
+        $title->setAccessible(true);
+        $title->setValue($this->newsEntity, $testValue);
+        $this->assertEquals($this->newsEntity->getTitle(), $testValue);
     }
 
     /**
@@ -121,7 +170,12 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetTitle()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testTitle';
+        $this->newsEntity->setTitle($testValue);
+        $title = $this->reflectionClass->getProperty('title');
+        $title->setAccessible(true);
+        $this->assertEquals($title->getValue($this->newsEntity), $testValue);
+        $this->assertEquals($this->newsEntity->getTitle(), $testValue);
     }
 
     /**
@@ -129,7 +183,11 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetKeywords()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testKeywords';
+        $keywords = $this->reflectionClass->getProperty('keywords');
+        $keywords->setAccessible(true);
+        $keywords->setValue($this->newsEntity, $testValue);
+        $this->assertEquals($this->newsEntity->getKeywords(), $testValue);
     }
 
     /**
@@ -137,7 +195,12 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetKeywords()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testKeywords';
+        $this->newsEntity->setKeywords($testValue);
+        $keywords = $this->reflectionClass->getProperty('keywords');
+        $keywords->setAccessible(true);
+        $this->assertEquals($keywords->getValue($this->newsEntity), $testValue);
+        $this->assertEquals($this->newsEntity->getKeywords(), $testValue);
     }
 
     /**
@@ -145,7 +208,11 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetStockTickers()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testStockTickers';
+        $stockTickers = $this->reflectionClass->getProperty('stockTickers');
+        $stockTickers->setAccessible(true);
+        $stockTickers->setValue($this->newsEntity, $testValue);
+        $this->assertEquals($this->newsEntity->getStockTickers(), $testValue);
     }
 
     /**
@@ -153,6 +220,11 @@ class NewsEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetStockTickers()
     {
-        $this->markTestIncomplete();
+        $testValue = 'testStockTickers';
+        $this->newsEntity->setStockTickers($testValue);
+        $stockTickers = $this->reflectionClass->getProperty('stockTickers');
+        $stockTickers->setAccessible(true);
+        $this->assertEquals($stockTickers->getValue($this->newsEntity), $testValue);
+        $this->assertEquals($this->newsEntity->getStockTickers(), $testValue);
     }
 }
