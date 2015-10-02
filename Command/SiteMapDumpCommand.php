@@ -36,17 +36,7 @@ class SiteMapDumpCommand extends ContainerAwareCommand
         $this
             ->setName('sitemap:dump')
             ->setDescription('Dumping sitemap.xml')
-            ->addArgument(
-                'name',
-                InputArgument::OPTIONAL,
-                'Who do you want to greet?'
-            )
-            ->addOption(
-                'yell',
-                null,
-                InputOption::VALUE_NONE,
-                'If set, the task will yell in uppercase letters'
-            );
+            ->addArgument('carefully', null, 'Check for existing files and directories');
     }
 
     /**
