@@ -74,7 +74,7 @@ TODO:
 - example with simple sitemap
 - describe all entities
 - describe service manager
-- describe dump entity
+- [describe dump entity][5]
 - describe adding domain as important action
 
 
@@ -85,7 +85,7 @@ This bundle is under the [MIT][3] license.
 
 [Документация на русском языке][1]
 
-[Demo][2] - Open page, then turn off network and update page
+[Demo][2]
 
 [Build a sitemap][4]
 
@@ -93,3 +93,4 @@ This bundle is under the [MIT][3] license.
 [2]:  http://makedev.org/sitemap.xml
 [3]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/meta/LICENSE
 [4]:  https://support.google.com/webmasters/answer/183668
+[5]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/dump_entity.md
