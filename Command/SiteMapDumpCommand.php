@@ -59,6 +59,7 @@ class SiteMapDumpCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln('<comment>Start dumping...</comment>');
         $this->serviceManager = $this->getContainer()->get('sitemap');
         $this->dumpEntity = $this->serviceManager->createDumpEntity()
             ->setCarefully($input->hasArgument('carefully') ? $input->getArgument('carefully') : false)
@@ -79,6 +80,7 @@ class SiteMapDumpCommand extends ContainerAwareCommand
         if (!empty($this->siteMapIndexEntity)) {
             $dumpManager->dumpSiteMapIndex();
         }
+        $output->writeln('<info>Done</info>');
 
         return 0;
     }
