@@ -90,4 +90,12 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
     {
         $this->markTestIncomplete();
     }
+
+    /**
+     *
+     */
+    public function testNewsCollection()
+    {
+        $this->markTestIncomplete();
+    }
 }

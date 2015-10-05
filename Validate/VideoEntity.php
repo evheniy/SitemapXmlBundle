@@ -16,6 +16,6 @@ class VideoEntity extends Entity implements ValidateEntityInterface
      */
     public function validate()
     {
-        throw new ValidateEntityException();
+        // TODO: Implement dump() method.
     }
 }
