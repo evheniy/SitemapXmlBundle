@@ -49,6 +49,27 @@ class SiteMapDumpCommand extends ContainerAwareCommand
     {
         $this->siteMapIndexEntity = $this->serviceManager->createSiteMapIndexEntity();
         $this->dumpEntity->setDomain('site.com');
+        //Just example
+        //You must extend this method and add your data!
+        $this->siteMapIndexEntity
+            ->addSiteMap(
+                $this->serviceManager->createSiteMapEntity()
+                    ->addLocation(
+                        $this->serviceManager->createLocationEntity()
+                            ->setLocation('http://site.com/page1.html')
+                            ->setLastmod(new \DateTime())
+                    )
+                    ->addLocation(
+                        $this->serviceManager->createLocationEntity()
+                            ->setLocation('http://site.com/page2.html')
+                            ->setLastmod(new \DateTime())
+                            ->addImage(
+                                $this->serviceManager->createImageEntity()
+                                    ->setLocation('http://site.com/logo.png')
+                                    ->setTitle('Logo')
+                            )
+                    )
+            );
     }
 
     /**

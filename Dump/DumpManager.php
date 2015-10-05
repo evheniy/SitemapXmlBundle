@@ -32,6 +32,7 @@ class DumpManager
     public function dumpSiteMapIndex()
     {
         $this->dumpEntity->validate();
+        $this->setSiteMapLocation();
         $this->validateSiteMapIndex();
         $this->validateAllSiteMap();
         $this->saveSiteMap();

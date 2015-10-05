@@ -19,11 +19,47 @@ AppKernel:
             $bundles = array(
                 ...
                 new Evheniy\SitemapXmlBundle\SitemapXmlBundle(),
+                new AppBundle\AppBundle(),
+                ...
             );
             ...
-
-
     ...
+
+You should set bundle before main bundle (in our example it's AppBundle) and extend SiteMapDumpCommand ( setEntities() method )
+
+    <?php
+
+    namespace AppBundle\Command;
+
+    use Evheniy\SitemapXmlBundle\Command\SiteMapDumpCommand as Command;
+
+    class SiteMapDumpCommand extends Command
+    {
+        protected function setEntities()
+        {
+            $this->siteMapIndexEntity = $this->serviceManager->createSiteMapIndexEntity();
+            $this->dumpEntity->setDomain('site.com');
+            $this->siteMapIndexEntity
+                ->addSiteMap(
+                    $this->serviceManager->createSiteMapEntity()
+                        ->addLocation(
+                            $this->serviceManager->createLocationEntity()
+                                ->setLocation('http://site.com/page1.html')
+                                ->setLastmod(new \DateTime())
+                        )
+                        ->addLocation(
+                            $this->serviceManager->createLocationEntity()
+                                ->setLocation('http://site.com/page2.html')
+                                ->setLastmod(new \DateTime())
+                                ->addImage(
+                                    $this->serviceManager->createImageEntity()
+                                        ->setLocation('http://site.com/logo.png')
+                                        ->setTitle('Logo')
+                                )
+                        )
+                );
+        }
+    }
 
 The last step
 
