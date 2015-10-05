@@ -3,10 +3,9 @@
 namespace Evheniy\SitemapXmlBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Evheniy\SitemapXmlBundle\Dump\DumpEntity;
 
 /**
  * Class SiteMapDumpCommand
@@ -27,6 +26,10 @@ class SiteMapDumpCommand extends ContainerAwareCommand
      * @var \Evheniy\SitemapXmlBundle\Dump\SiteMapEntity
      */
     protected $siteMapEntity;
+    /**
+     * @var DumpEntity
+     */
+    protected $dumpEntity;
 
     /**
      *
@@ -36,7 +39,16 @@ class SiteMapDumpCommand extends ContainerAwareCommand
         $this
             ->setName('sitemap:dump')
             ->setDescription('Dumping sitemap.xml')
-            ->addArgument('carefully', null, 'Check for existing files and directories');
+            ->addArgument('carefully', null, 'Check for existing files and directories', false);
+    }
+
+    /**
+     *
+     */
+    protected function setEntities()
+    {
+        $this->siteMapIndexEntity = $this->serviceManager->createSiteMapIndexEntity();
+        $this->dumpEntity->setDomain('site.com');
     }
 
     /**
@@ -47,46 +59,27 @@ class SiteMapDumpCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->serviceManager = $this->getContainer()->get('sitemap');
+        $this->dumpEntity = $this->serviceManager->createDumpEntity()
+            ->setCarefully($input->hasArgument('carefully') ? $input->getArgument('carefully') : false)
+            ->setWebDir(realpath($this->getContainer()->get('kernel')->getRootDir() . '/../web'));
+        $this->setEntities();
         $dumpManager = $this->serviceManager->createDumpManager();
-        $dumpEntity = $this->serviceManager->createDumpEntity();
-        //TODO $dumpEntity->setCarefully($input->getArgument('isCarefully'));
-        $dumpEntity->setWebDir(realpath($this->getContainer()->get('kernel')->getRootDir() . '/../web'));
-        $dumpManager->setEntity($dumpEntity);
-        //TODO add check isCarefully
-        $name = $input->getArgument('name');
-        if ($name) {
-            $text = 'Hello '.$name;
-        } else {
-            $text = 'Hello';
-        }
 
-        if ($input->getOption('yell')) {
-            $text = strtoupper($text);
+        if (!empty($this->siteMapEntity)) {
+            $this->dumpEntity->setSiteMapEntity($this->siteMapEntity);
         }
-
-        $output->writeln($text);
+        if (!empty($this->siteMapIndexEntity)) {
+            $this->dumpEntity->setSiteMapIndexEntity($this->siteMapIndexEntity);
+        }
+        $dumpManager->setEntity($this->dumpEntity);
+        if (!empty($this->siteMapEntity)) {
+            $dumpManager->dumpSiteMap();
+        }
+        if (!empty($this->siteMapIndexEntity)) {
+            $dumpManager->dumpSiteMapIndex();
+        }
 
         return 0;
-    }
-
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    protected function initialize(InputInterface $input, OutputInterface $output)
-    {
-        $input;
-        $output;
-        $this->serviceManager = $this->getContainer()->get('sitemap');
-        $this->setEntities();
-    }
-
-    /**
-     *
-     */
-    protected function setEntities()
-    {
-        $this->siteMapIndexEntity = $this->serviceManager->createSiteMapIndexEntity();
-        $this->siteMapEntity = $this->serviceManager->createSiteMapEntity();
     }
 }
