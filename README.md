@@ -68,6 +68,12 @@ The last step
 Documentation
 -------------
 
+TODO:
+- example with simple sitemap
+- describe all entities
+- describe service manager
+- describe dump entity
+- describe adding domain as important action
 
 
 License
