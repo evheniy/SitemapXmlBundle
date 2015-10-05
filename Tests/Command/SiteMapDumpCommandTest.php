@@ -8,6 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\StreamOutput;
 use Symfony\Component\Filesystem\Filesystem;
+use Evheniy\SitemapXmlBundle\Dump\SiteMapEntity;
 
 /**
  * Class SiteMapDumpCommandTest
@@ -82,7 +83,6 @@ class SiteMapDumpCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetEntities()
     {
-
         $method = $this->reflectionClass->getMethod('execute');
         $method->setAccessible(true);
         $output = new StreamOutput(fopen('php://memory', 'w', false));
@@ -95,6 +95,9 @@ class SiteMapDumpCommandTest extends \PHPUnit_Framework_TestCase
         $dumpEntity = $this->reflectionClass->getProperty('dumpEntity');
         $dumpEntity->setAccessible(true);
         $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Dump\DumpEntity', $dumpEntity->getValue($this->siteMapDumpCommand));
+        $this->assertTrue($this->filesystem->exists($this->path . '/sitemap.xml'));
+        rewind($output->getStream());
+        $this->assertRegExp('/Done/', stream_get_contents($output->getStream()));
     }
 
     /**
@@ -102,9 +105,20 @@ class SiteMapDumpCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function testExecute()
     {
-        //$serviceManager = $this->reflectionClass->getProperty('serviceManager');
-        //$serviceManager->setAccessible(true);
-        //$this->assertInstanceOf('Evheniy\SitemapXmlBundle\Service\ServiceManager', $serviceManager->getValue($this->siteMapDumpCommand));
-        $this->markTestIncomplete();
+        $siteMapEntity = $this->reflectionClass->getProperty('siteMapEntity');
+        $siteMapEntity->setAccessible(true);
+        $siteMapEntity->setValue($this->siteMapDumpCommand, new SiteMapEntity());
+
+        $method = $this->reflectionClass->getMethod('execute');
+        $method->setAccessible(true);
+        $output = new StreamOutput(fopen('php://memory', 'w', false));
+        $method->invoke($this->siteMapDumpCommand, new ArrayInput(array()), $output);
+
+        $serviceManager = $this->reflectionClass->getProperty('serviceManager');
+        $serviceManager->setAccessible(true);
+        $this->assertInstanceOf('Evheniy\SitemapXmlBundle\Service\ServiceManager', $serviceManager->getValue($this->siteMapDumpCommand));
+        $this->assertTrue($this->filesystem->exists($this->path . '/sitemap.xml'));
+        rewind($output->getStream());
+        $this->assertRegExp('/Done/', stream_get_contents($output->getStream()));
     }
 }
