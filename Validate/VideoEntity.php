@@ -642,7 +642,7 @@ class VideoEntity extends Entity implements ValidateEntityInterface
                 array_filter(
                     explode(' ', $this->restriction['countries']),
                     /**
-                     *
+                     * @param string $value
                      */
                     function ($value) {
                     return !in_array(
@@ -704,7 +704,7 @@ class VideoEntity extends Entity implements ValidateEntityInterface
                 array_filter(
                     explode(' ', $this->platform['code']),
                     /**
-                     *
+                     * @param string $value
                      */
                     function ($value) {
                     return !in_array(
