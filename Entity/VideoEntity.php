@@ -290,7 +290,7 @@ class VideoEntity extends AbstractEntity
     /**
      * @return boolean
      */
-    public function getFamilyFriendly()
+    public function isFamilyFriendly()
     {
         return $this->familyFriendly;
     }
@@ -404,7 +404,7 @@ class VideoEntity extends AbstractEntity
     /**
      * @return boolean
      */
-    public function getRequiresSubscription()
+    public function isRequiresSubscription()
     {
         return $this->requiresSubscription;
     }
@@ -461,7 +461,7 @@ class VideoEntity extends AbstractEntity
     /**
      * @return boolean
      */
-    public function getLive()
+    public function isLive()
     {
         return $this->live;
     }
