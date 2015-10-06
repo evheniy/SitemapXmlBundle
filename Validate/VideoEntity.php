@@ -641,11 +641,14 @@ class VideoEntity extends Entity implements ValidateEntityInterface
             if (count(
                 array_filter(
                     explode(' ', $this->restriction['countries']),
+                    /**
+                     *
+                     */
                     function ($value) {
-                        return !in_array(
-                            trim($value),
-                            self::$territories
-                        );
+                    return !in_array(
+                        trim($value),
+                        self::$territories
+                    );
                     }
                 )
             )) {
@@ -700,11 +703,14 @@ class VideoEntity extends Entity implements ValidateEntityInterface
             if (count(
                 array_filter(
                     explode(' ', $this->platform['code']),
+                    /**
+                     *
+                     */
                     function ($value) {
-                        return !in_array(
-                            trim($value),
-                            array('WEB', 'MOBILE', 'TV')
-                        );
+                    return !in_array(
+                        trim($value),
+                        array('WEB', 'MOBILE', 'TV')
+                    );
                     }
                 )
             )) {
