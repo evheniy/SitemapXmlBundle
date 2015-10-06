@@ -5,6 +5,7 @@ namespace Evheniy\SitemapXmlBundle\Tests\Dump;
 use Evheniy\SitemapXmlBundle\Dump\ImageEntity;
 use Evheniy\SitemapXmlBundle\Dump\LocationEntity;
 use Evheniy\SitemapXmlBundle\Dump\NewsEntity;
+use Evheniy\SitemapXmlBundle\Dump\VideoEntity;
 
 /**
  * Class LocationEntityTest
@@ -89,7 +90,16 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testVideoCollection()
     {
-        $this->markTestIncomplete();
+        $videoEntity = new VideoEntity();
+        $videoEntity->setThumbnailLoc('http://test.com/video.png');
+        $videoEntity->setTitle('test');
+        $videoEntity->setDescription('test');
+        $this->locationEntity->addVideo($videoEntity);
+        $this->assertRegExp('/\<video\:video\>/', $this->locationEntity->getXml());
+        $this->assertRegExp('/\<video\:thumbnail\_loc\>http\:\/\/test\.com\/video\.png\<\/video\:thumbnail\_loc\>/', $this->locationEntity->getXml());
+        $this->assertRegExp('/\<video\:title\>test\<\/video\:title\>/', $this->locationEntity->getXml());
+        $this->assertRegExp('/\<video\:description\>test\<\/video\:description\>/', $this->locationEntity->getXml());
+        $this->assertRegExp('/\<\/video\:video\>/', $this->locationEntity->getXml());
     }
 
     /**
