@@ -4,6 +4,7 @@ namespace Evheniy\SitemapXmlBundle\Tests\Dump;
 
 use Evheniy\SitemapXmlBundle\Dump\ImageEntity;
 use Evheniy\SitemapXmlBundle\Dump\LocationEntity;
+use Evheniy\SitemapXmlBundle\Dump\NewsEntity;
 
 /**
  * Class LocationEntityTest
@@ -31,9 +32,9 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testLocation()
     {
-        $this->assertRegExp('/\<url\>/', $this->locationEntity ->getXml());
-        $this->assertRegExp('/\<\/url\>/', $this->locationEntity ->getXml());
-        $this->assertRegExp('/\<loc\>http\:\/\/test\.com\/\<\/loc\>/', $this->locationEntity ->getXml());
+        $this->assertRegExp('/\<url\>/', $this->locationEntity->getXml());
+        $this->assertRegExp('/\<\/url\>/', $this->locationEntity->getXml());
+        $this->assertRegExp('/\<loc\>http\:\/\/test\.com\/\<\/loc\>/', $this->locationEntity->getXml());
     }
 
     /**
@@ -42,7 +43,7 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
     public function testLastmod()
     {
         $this->locationEntity->setLastmod(new \DateTime('2015-09-10'));
-        $this->assertRegExp('/\<lastmod\>2015-09-10\<\/lastmod\>/', $this->locationEntity ->getXml());
+        $this->assertRegExp('/\<lastmod\>2015-09-10\<\/lastmod\>/', $this->locationEntity->getXml());
     }
 
     /**
@@ -51,7 +52,7 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
     public function testChangefreq()
     {
         $this->locationEntity->setChangefreq('monthly');
-        $this->assertRegExp('/\<changefreq\>monthly\<\/changefreq\>/', $this->locationEntity ->getXml());
+        $this->assertRegExp('/\<changefreq\>monthly\<\/changefreq\>/', $this->locationEntity->getXml());
     }
 
     /**
@@ -60,7 +61,7 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
     public function testPriority()
     {
         $this->locationEntity->setPriority(0.5);
-        $this->assertRegExp('/\<priority\>0.5\<\/priority\>/', $this->locationEntity ->getXml());
+        $this->assertRegExp('/\<priority\>0.5\<\/priority\>/', $this->locationEntity->getXml());
     }
 
     /**
@@ -69,7 +70,7 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
     public function testMobile()
     {
         $this->locationEntity->setMobile(true);
-        $this->assertRegExp('/\<mobile\:mobile\/\>/', $this->locationEntity ->getXml());
+        $this->assertRegExp('/\<mobile\:mobile\/\>/', $this->locationEntity->getXml());
     }
 
     /**
@@ -80,7 +81,7 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
         $imageEntity = new ImageEntity();
         $imageEntity->setLocation('http://test.com/');
         $this->locationEntity->addImage($imageEntity);
-        $this->assertRegExp('/\<image\:image\>\<image\:loc\>http\:\/\/test\.com\/\<\/image\:loc\>\<\/image\:image\>/', $this->locationEntity ->getXml());
+        $this->assertRegExp('/\<image\:image\>\<image\:loc\>http\:\/\/test\.com\/\<\/image\:loc\>\<\/image\:image\>/', $this->locationEntity->getXml());
     }
 
     /**
@@ -96,6 +97,15 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testNewsCollection()
     {
-        $this->markTestIncomplete();
+        $newsEntity = new NewsEntity();
+        $newsEntity->setPublicationName('test');
+        $newsEntity->setPublicationLanguage('en');
+        $this->locationEntity->addNews($newsEntity);
+        $this->assertRegExp('/\<news\:news\>/', $this->locationEntity->getXml());
+        $this->assertRegExp('/\<news\:publication\>/', $this->locationEntity->getXml());
+        $this->assertRegExp('/\<news\:name\>test\<\/news\:name\>/', $this->locationEntity->getXml());
+        $this->assertRegExp('/\<news\:language\>en\<\/news\:language\>/', $this->locationEntity->getXml());
+        $this->assertRegExp('/\<\/news\:publication\>/', $this->locationEntity->getXml());
+        $this->assertRegExp('/\<\/news\:news\>/', $this->locationEntity->getXml());
     }
 }

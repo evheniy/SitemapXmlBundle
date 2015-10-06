@@ -30,9 +30,9 @@ class SiteMapIndexEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testDump()
     {
-        $this->assertRegExp('/\<\?xml version\=\"1\.0\" encoding\=\"UTF\-8\"\?\>/', $this->siteMapIndexEntity ->getXml());
-        $this->assertRegExp('/\<sitemapindex xmlns\=\"http\:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9\"\>/', $this->siteMapIndexEntity ->getXml());
-        $this->assertRegExp('/\<\/sitemapindex\>/', $this->siteMapIndexEntity ->getXml());
+        $this->assertRegExp('/\<\?xml version\=\"1\.0\" encoding\=\"UTF\-8\"\?\>/', $this->siteMapIndexEntity->getXml());
+        $this->assertRegExp('/\<sitemapindex xmlns\=\"http\:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9\"\>/', $this->siteMapIndexEntity->getXml());
+        $this->assertRegExp('/\<\/sitemapindex\>/', $this->siteMapIndexEntity->getXml());
     }
 
     /**
@@ -44,6 +44,6 @@ class SiteMapIndexEntityTest extends \PHPUnit_Framework_TestCase
         $siteMapEntity->setLoc('http://test.com/sitemap1.xml');
         $siteMapEntity->setLastmod(new \DateTime('2015-09-10'));
         $this->siteMapIndexEntity->addSiteMap($siteMapEntity);
-        $this->assertRegExp('/\<sitemap\>\<loc\>http\:\/\/test\.com\/sitemap1\.xml\<\/loc\>\<lastmod\>2015\-09\-10\<\/lastmod\>\<\/sitemap\>/', $this->siteMapIndexEntity ->getXml());
+        $this->assertRegExp('/\<sitemap\>\<loc\>http\:\/\/test\.com\/sitemap1\.xml\<\/loc\>\<lastmod\>2015\-09\-10\<\/lastmod\>\<\/sitemap\>/', $this->siteMapIndexEntity->getXml());
     }
 }

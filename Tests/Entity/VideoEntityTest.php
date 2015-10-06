@@ -283,9 +283,12 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetFamilyFriendly()
     {
-        $testValue = 'testFamilyFriendly';
+        $testValue = true;
         $familyFriendly = $this->reflectionClass->getProperty('familyFriendly');
         $familyFriendly->setAccessible(true);
+        $familyFriendly->setValue($this->videoEntity, $testValue);
+        $this->assertEquals($this->videoEntity->getFamilyFriendly(), $testValue);
+        $testValue = false;
         $familyFriendly->setValue($this->videoEntity, $testValue);
         $this->assertEquals($this->videoEntity->getFamilyFriendly(), $testValue);
     }
@@ -295,10 +298,14 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetFamilyFriendly()
     {
-        $testValue = 'testFamilyFriendly';
+        $testValue = true;
         $this->videoEntity->setFamilyFriendly($testValue);
         $familyFriendly = $this->reflectionClass->getProperty('familyFriendly');
         $familyFriendly->setAccessible(true);
+        $this->assertEquals($familyFriendly->getValue($this->videoEntity), $testValue);
+        $this->assertEquals($this->videoEntity->getFamilyFriendly(), $testValue);
+        $testValue = false;
+        $this->videoEntity->setFamilyFriendly($testValue);
         $this->assertEquals($familyFriendly->getValue($this->videoEntity), $testValue);
         $this->assertEquals($this->videoEntity->getFamilyFriendly(), $testValue);
     }
@@ -433,9 +440,12 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRequiresSubscription()
     {
-        $testValue = 'testRequiresSubscription';
+        $testValue = true;
         $requiresSubscription = $this->reflectionClass->getProperty('requiresSubscription');
         $requiresSubscription->setAccessible(true);
+        $requiresSubscription->setValue($this->videoEntity, $testValue);
+        $this->assertEquals($this->videoEntity->getRequiresSubscription(), $testValue);
+        $testValue = false;
         $requiresSubscription->setValue($this->videoEntity, $testValue);
         $this->assertEquals($this->videoEntity->getRequiresSubscription(), $testValue);
     }
@@ -445,10 +455,14 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetRequiresSubscription()
     {
-        $testValue = 'testRequiresSubscription';
+        $testValue = true;
         $this->videoEntity->setRequiresSubscription($testValue);
         $requiresSubscription = $this->reflectionClass->getProperty('requiresSubscription');
         $requiresSubscription->setAccessible(true);
+        $this->assertEquals($requiresSubscription->getValue($this->videoEntity), $testValue);
+        $this->assertEquals($this->videoEntity->getRequiresSubscription(), $testValue);
+        $testValue = false;
+        $this->videoEntity->setRequiresSubscription($testValue);
         $this->assertEquals($requiresSubscription->getValue($this->videoEntity), $testValue);
         $this->assertEquals($this->videoEntity->getRequiresSubscription(), $testValue);
     }
@@ -508,9 +522,12 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLive()
     {
-        $testValue = 'testLive';
+        $testValue = true;
         $live = $this->reflectionClass->getProperty('live');
         $live->setAccessible(true);
+        $live->setValue($this->videoEntity, $testValue);
+        $this->assertEquals($this->videoEntity->getLive(), $testValue);
+        $testValue = false;
         $live->setValue($this->videoEntity, $testValue);
         $this->assertEquals($this->videoEntity->getLive(), $testValue);
     }
@@ -520,10 +537,14 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetLive()
     {
-        $testValue = 'testLive';
+        $testValue = true;
         $this->videoEntity->setLive($testValue);
         $live = $this->reflectionClass->getProperty('live');
         $live->setAccessible(true);
+        $this->assertEquals($live->getValue($this->videoEntity), $testValue);
+        $this->assertEquals($this->videoEntity->getLive(), $testValue);
+        $testValue = false;
+        $this->videoEntity->setLive($testValue);
         $this->assertEquals($live->getValue($this->videoEntity), $testValue);
         $this->assertEquals($this->videoEntity->getLive(), $testValue);
     }

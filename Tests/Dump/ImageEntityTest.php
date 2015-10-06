@@ -33,7 +33,7 @@ class ImageEntityTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertRegExp('/\<image\:image\>/', $this->imageEntity ->getXml());
         $this->assertRegExp('/\<\/image\:image\>/', $this->imageEntity ->getXml());
-        $this->assertRegExp('/\<image\:loc\>http\:\/\/test\.com\/\<\/image\:loc\>/', $this->imageEntity ->getXml());
+        $this->assertRegExp('/\<image\:loc\>http\:\/\/test\.com\/\<\/image\:loc\>/', $this->imageEntity->getXml());
     }
 
     /**
@@ -42,7 +42,7 @@ class ImageEntityTest extends \PHPUnit_Framework_TestCase
     public function testCaption()
     {
         $this->imageEntity->setCaption('caption');
-        $this->assertRegExp('/\<image\:caption\>caption\<\/image\:caption\>/', $this->imageEntity ->getXml());
+        $this->assertRegExp('/\<image\:caption\>caption\<\/image\:caption\>/', $this->imageEntity->getXml());
     }
 
     /**
@@ -51,7 +51,7 @@ class ImageEntityTest extends \PHPUnit_Framework_TestCase
     public function testGeoLocation()
     {
         $this->imageEntity->setGeoLocation('GeoLocation');
-        $this->assertRegExp('/\<image\:geo_location\>GeoLocation\<\/image\:geo_location\>/', $this->imageEntity ->getXml());
+        $this->assertRegExp('/\<image\:geo_location\>GeoLocation\<\/image\:geo_location\>/', $this->imageEntity->getXml());
     }
 
     /**
@@ -60,7 +60,7 @@ class ImageEntityTest extends \PHPUnit_Framework_TestCase
     public function testTitle()
     {
         $this->imageEntity->setTitle('Title');
-        $this->assertRegExp('/\<image\:title\>Title\<\/image\:title\>/', $this->imageEntity ->getXml());
+        $this->assertRegExp('/\<image\:title\>Title\<\/image\:title\>/', $this->imageEntity->getXml());
     }
 
     /**
@@ -69,6 +69,6 @@ class ImageEntityTest extends \PHPUnit_Framework_TestCase
     public function testLicense()
     {
         $this->imageEntity->setLicense('License');
-        $this->assertRegExp('/\<image\:license\>License\<\/image\:license\>/', $this->imageEntity ->getXml());
+        $this->assertRegExp('/\<image\:license\>License\<\/image\:license\>/', $this->imageEntity->getXml());
     }
 }

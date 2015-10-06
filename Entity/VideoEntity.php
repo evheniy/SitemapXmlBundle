@@ -50,9 +50,9 @@ class VideoEntity extends AbstractEntity
      */
     protected $publicationDate;
     /**
-     * @var string
+     * @var boolean
      */
-    protected $familyFriendly;
+    protected $familyFriendly = true;
     /**
      * @var string
      */
@@ -74,9 +74,9 @@ class VideoEntity extends AbstractEntity
      */
     protected $price;
     /**
-     * @var string
+     * @var boolean
      */
-    protected $requiresSubscription;
+    protected $requiresSubscription = true;
     /**
      * @var string
      */
@@ -86,9 +86,9 @@ class VideoEntity extends AbstractEntity
      */
     protected $platform;
     /**
-     * @var string
+     * @var boolean
      */
-    protected $live;
+    protected $live = false;
     /**
      *
      */
@@ -288,7 +288,7 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return boolean
      */
     public function getFamilyFriendly()
     {
@@ -296,12 +296,12 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @param string $familyFriendly
+     * @param boolean $familyFriendly
      * @return $this
      */
-    public function setFamilyFriendly($familyFriendly)
+    public function setFamilyFriendly($familyFriendly = true)
     {
-        $this->familyFriendly = $familyFriendly;
+        $this->familyFriendly = boolval($familyFriendly);
 
         return $this;
     }
@@ -402,7 +402,7 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return boolean
      */
     public function getRequiresSubscription()
     {
@@ -410,12 +410,12 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @param string $requiresSubscription
+     * @param boolean $requiresSubscription
      * @return $this
      */
-    public function setRequiresSubscription($requiresSubscription)
+    public function setRequiresSubscription($requiresSubscription = true)
     {
-        $this->requiresSubscription = $requiresSubscription;
+        $this->requiresSubscription = boolval($requiresSubscription);
 
         return $this;
     }
@@ -459,7 +459,7 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return boolean
      */
     public function getLive()
     {
@@ -467,12 +467,12 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @param string $live
+     * @param boolean $live
      * @return $this
      */
-    public function setLive($live)
+    public function setLive($live = false)
     {
-        $this->live = $live;
+        $this->live = boolval($live);
 
         return $this;
     }

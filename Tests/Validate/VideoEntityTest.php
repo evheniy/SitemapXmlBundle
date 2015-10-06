@@ -108,13 +108,29 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
+    public function testValidateGalleryLoc()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setGalleryLoc('test');
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"GalleryLoc" field must be valid url!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
     public function testValidateOk()
     {
         $this->videoEntity
             ->setThumbnailLoc('http://site.com/video.png')
             ->setTitle('test')
             ->setDescription('test')
-            ->setContentLoc('http://site.com/video.avi');
+            ->setContentLoc('http://site.com/video.avi')
+            ->setGalleryLoc('http://site.com/video.png');
         $this->assertEquals($this->videoEntity->validate(), $this->videoEntity);
     }
 }

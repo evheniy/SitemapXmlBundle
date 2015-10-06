@@ -39,6 +39,9 @@ class VideoEntity extends Entity implements ValidateEntityInterface
         if (!empty($this->playerLoc) && filter_var($this->playerLoc, FILTER_VALIDATE_URL) === false) {
             throw new ValidateEntityException('"PlayerLoc" field must be valid url!');
         }
+        if (!empty($this->galleryLoc) && filter_var($this->galleryLoc, FILTER_VALIDATE_URL) === false) {
+            throw new ValidateEntityException('"GalleryLoc" field must be valid url!');
+        }
 
         return $this;
     }
