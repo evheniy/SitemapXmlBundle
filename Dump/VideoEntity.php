@@ -42,7 +42,7 @@ class VideoEntity extends Entity implements DumpEntityInterface
         if (!empty($this->publicationDate)) {
             $videoText .= '<video:publication_date>' . $this->publicationDate->format('c') . '</video:publication_date>';
         }
-        $videoText .= '<video:family_friendly>' . $this->familyFriendly ? 'yes' : 'no' . '</video:family_friendly>';
+        $videoText .= '<video:family_friendly>' . ($this->familyFriendly ? 'yes' : 'no') . '</video:family_friendly>';
         if (!empty($this->tag)) {
             $videoText .= '<video:tag>' . $this->tag . '</video:tag>';
         }
@@ -58,14 +58,14 @@ class VideoEntity extends Entity implements DumpEntityInterface
         if (!empty($this->price['price'])) {
             $videoText .= '<video:price currency="' . $this->price['currency'] . '">' . $this->price['price'] . '</video:price>';
         }
-        $videoText .= '<video:requires_subscription>' . $this->requiresSubscription ? 'yes' : 'no' . '</video:requires_subscription>';
+        $videoText .= '<video:requires_subscription>' . ($this->requiresSubscription ? 'yes' : 'no') . '</video:requires_subscription>';
         if (!empty($this->uploader['name'])) {
             $videoText .= '<video:uploader' . !empty($this->uploader['info']) ? ' info="' . $this->uploader['info'] . '"' : '' . '>' . $this->uploader['name'] . '</video:uploader>';
         }
         if (!empty($this->platform['code'])) {
             $videoText .= '<video:platform relationship="' . $this->platform['relationship'] . '">' . $this->platform['code'] . '</video:platform>';
         }
-        $videoText .= '<video:live>' . $this->live ? 'yes' : 'no' . '</video:live>';
+        $videoText .= '<video:live>' . ($this->live ? 'yes' : 'no') . '</video:live>';
         $videoText .= '</video:video>';
 
         return $videoText;

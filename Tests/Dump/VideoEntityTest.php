@@ -36,6 +36,9 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
         $this->assertRegExp('/\<video\:thumbnail\_loc\>http\:\/\/test\.com\/video\.png\<\/video\:thumbnail\_loc\>/', $this->videoEntity->getXml());
         $this->assertRegExp('/\<video\:title\>test\<\/video\:title\>/', $this->videoEntity->getXml());
         $this->assertRegExp('/\<video\:description\>test\<\/video\:description\>/', $this->videoEntity->getXml());
+        $this->assertRegExp('/\<video\:family\_friendly\>yes\<\/video\:family\_friendly\>/', $this->videoEntity->getXml());
+        $this->assertRegExp('/\<video\:requires\_subscription\>yes\<\/video\:requires\_subscription\>/', $this->videoEntity->getXml());
+        $this->assertRegExp('/\<video\:live\>no\<\/video\:live\>/', $this->videoEntity->getXml());
         $this->assertRegExp('/\<\/video\:video\>/', $this->videoEntity->getXml());
     }
 }
