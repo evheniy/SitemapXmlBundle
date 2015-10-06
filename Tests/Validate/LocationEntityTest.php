@@ -4,6 +4,8 @@ namespace Evheniy\SitemapXmlBundle\Tests\Validate;
 
 use Evheniy\SitemapXmlBundle\Validate\ImageEntity;
 use Evheniy\SitemapXmlBundle\Validate\LocationEntity;
+use Evheniy\SitemapXmlBundle\Validate\NewsEntity;
+use Evheniy\SitemapXmlBundle\Validate\VideoEntity;
 
 /**
  * Class LocationEntityTest
@@ -154,16 +156,60 @@ class LocationEntityTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function testValidateOk()
+    public function testValidateWrongVideo()
     {
-        $image = new ImageEntity();
-        $image->setLocation('http://test.com/image.png');
         $this->locationEntity
             ->setLocation('http://test.com/')
             ->setLastmod(new \DateTime())
             ->setChangefreq('always')
             ->setPriority(0.5)
-            ->addImage($image);
+            ->addVideo(new VideoEntity());
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"ThumbnailLoc" field must be not empty!');
+        $this->locationEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateWrongNews()
+    {
+        $this->locationEntity
+            ->setLocation('http://test.com/')
+            ->setLastmod(new \DateTime())
+            ->setChangefreq('always')
+            ->setPriority(0.5)
+            ->addNews(new NewsEntity());
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Title" field must be not empty!');
+        $this->locationEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateOk()
+    {
+        $image = new ImageEntity();
+        $image->setLocation('http://test.com/image.png');
+        $video = new VideoEntity();
+        $video->setThumbnailLoc('http://test.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://test.com/video.avi');
+        $news = new NewsEntity();
+        $news->setTitle('test')
+            ->setPublicationName('test')
+            ->setPublicationLanguage('en')
+            ->setAccess('Subscription')
+            ->setGenres('PressRelease');
+        $this->locationEntity
+            ->setLocation('http://test.com/')
+            ->setLastmod(new \DateTime())
+            ->setChangefreq('always')
+            ->setPriority(0.5)
+            ->addImage($image)
+            ->addVideo($video)
+            ->addNews($news);
         $this->assertEquals($this->locationEntity->validate(), $this->locationEntity);
     }
+
 }
