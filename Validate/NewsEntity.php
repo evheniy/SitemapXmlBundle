@@ -12,6 +12,7 @@ use Evheniy\SitemapXmlBundle\Exception\ValidateEntityException;
 class NewsEntity extends Entity implements ValidateEntityInterface
 {
     /**
+     * @return $this
      * @throws ValidateEntityException
      */
     public function validate()

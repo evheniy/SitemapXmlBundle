@@ -13,6 +13,7 @@ use Evheniy\SitemapXmlBundle\Exception\ValidateEntityException;
 class VideoEntity extends Entity implements ValidateEntityInterface
 {
     /**
+     * @return $this
      * @throws ValidateEntityException
      */
     public function validate()
