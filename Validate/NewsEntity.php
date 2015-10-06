@@ -46,7 +46,7 @@ class NewsEntity extends Entity implements ValidateEntityInterface
                     explode(',', $this->genres),
                     function ($value) {
                         return !in_array(
-                            $value,
+                            trim($value),
                             array('PressRelease', 'Satire', 'Blog', 'OpEd', 'Opinion', 'UserGenerated')
                         );
                     }
