@@ -100,8 +100,8 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
             ->setThumbnailLoc('http://site.com/video.png')
             ->setTitle('test')
             ->setDescription('test')
-            ->setPlayerLoc('test');
-        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"PlayerLoc" field must be valid url!');
+            ->setPlayerLoc(array('url' => 'test'));
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"PlayerLoc[url]" field must be valid url!');
         $this->videoEntity->validate();
     }
 
@@ -115,8 +115,8 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
             ->setTitle('test')
             ->setDescription('test')
             ->setContentLoc('http://site.com/video.avi')
-            ->setGalleryLoc('test');
-        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"GalleryLoc" field must be valid url!');
+            ->setGalleryLoc(array('url' => 'test', 'title' => null));
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"GalleryLoc[url]" field must be valid url!');
         $this->videoEntity->validate();
     }
 
@@ -130,7 +130,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
             ->setTitle('test')
             ->setDescription('test')
             ->setContentLoc('http://site.com/video.avi')
-            ->setGalleryLoc('http://site.com/video.png');
+            ->setGalleryLoc(array('url' => 'http://site.com/video.png', 'title' => null));
         $this->assertEquals($this->videoEntity->validate(), $this->videoEntity);
     }
 }

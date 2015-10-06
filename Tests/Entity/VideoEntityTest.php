@@ -133,7 +133,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPlayerLoc()
     {
-        $testValue = 'testPlayerLoc';
+        $testValue = array('url' => 'http://test.com/', 'allowEmbed' => false, 'autoPlay' => null);
         $playerLoc = $this->reflectionClass->getProperty('playerLoc');
         $playerLoc->setAccessible(true);
         $playerLoc->setValue($this->videoEntity, $testValue);
@@ -145,7 +145,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetPlayerLoc()
     {
-        $testValue = 'testPlayerLoc';
+        $testValue = array('url' => 'http://test.com/', 'allowEmbed' => false, 'autoPlay' => null);
         $this->videoEntity->setPlayerLoc($testValue);
         $playerLoc = $this->reflectionClass->getProperty('playerLoc');
         $playerLoc->setAccessible(true);
@@ -365,7 +365,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRestriction()
     {
-        $testValue = 'testRestriction';
+        $testValue = array('countries' => 'US', 'relationship' => 'allow');
         $restriction = $this->reflectionClass->getProperty('restriction');
         $restriction->setAccessible(true);
         $restriction->setValue($this->videoEntity, $testValue);
@@ -377,7 +377,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetRestriction()
     {
-        $testValue = 'testRestriction';
+        $testValue = array('countries' => 'US', 'relationship' => 'allow');
         $this->videoEntity->setRestriction($testValue);
         $restriction = $this->reflectionClass->getProperty('restriction');
         $restriction->setAccessible(true);
@@ -390,7 +390,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetGalleryLoc()
     {
-        $testValue = 'testGalleryLoc';
+        $testValue = array('url' => 'http://test.com/', 'title' => null);
         $galleryLoc = $this->reflectionClass->getProperty('galleryLoc');
         $galleryLoc->setAccessible(true);
         $galleryLoc->setValue($this->videoEntity, $testValue);
@@ -402,7 +402,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGalleryLoc()
     {
-        $testValue = 'testGalleryLoc';
+        $testValue = array('url' => 'http://test.com/', 'title' => null);
         $this->videoEntity->setGalleryLoc($testValue);
         $galleryLoc = $this->reflectionClass->getProperty('galleryLoc');
         $galleryLoc->setAccessible(true);
@@ -415,7 +415,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPrice()
     {
-        $testValue = 'testPrice';
+        $testValue = array('price' => 0.5, 'currency' => 'USD');
         $price = $this->reflectionClass->getProperty('price');
         $price->setAccessible(true);
         $price->setValue($this->videoEntity, $testValue);
@@ -427,7 +427,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetPrice()
     {
-        $testValue = 'testPrice';
+        $testValue = array('price' => 0.5, 'currency' => 'USD');
         $this->videoEntity->setPrice($testValue);
         $price = $this->reflectionClass->getProperty('price');
         $price->setAccessible(true);
@@ -472,7 +472,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUploader()
     {
-        $testValue = 'testUploader';
+        $testValue = array('name' => 'test', 'info' => 'http://test.com/');
         $uploader = $this->reflectionClass->getProperty('uploader');
         $uploader->setAccessible(true);
         $uploader->setValue($this->videoEntity, $testValue);
@@ -484,7 +484,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetUploader()
     {
-        $testValue = 'testUploader';
+        $testValue = array('name' => 'test', 'info' => 'http://test.com/');
         $this->videoEntity->setUploader($testValue);
         $uploader = $this->reflectionClass->getProperty('uploader');
         $uploader->setAccessible(true);
@@ -497,7 +497,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPlatform()
     {
-        $testValue = 'testPlatform';
+        $testValue = array('code' => 'WEB', 'relationship' => 'allow');
         $platform = $this->reflectionClass->getProperty('platform');
         $platform->setAccessible(true);
         $platform->setValue($this->videoEntity, $testValue);
@@ -509,7 +509,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetPlatform()
     {
-        $testValue = 'testPlatform';
+        $testValue = array('code' => 'WEB', 'relationship' => 'allow');
         $this->videoEntity->setPlatform($testValue);
         $platform = $this->reflectionClass->getProperty('platform');
         $platform->setAccessible(true);

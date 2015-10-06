@@ -26,9 +26,9 @@ class VideoEntity extends AbstractEntity
      */
     protected $contentLoc;
     /**
-     * @var string
+     * @var array
      */
-    protected $playerLoc;
+    protected $playerLoc = array('url' => null, 'allowEmbed' => false, 'autoPlay' => null);
     /**
      * @var string
      */
@@ -62,29 +62,29 @@ class VideoEntity extends AbstractEntity
      */
     protected $category;
     /**
-     * @var string
+     * @var array
      */
-    protected $restriction;
+    protected $restriction = array('countries' => null, 'relationship' => 'allow');
     /**
-     * @var string
+     * @var array
      */
-    protected $galleryLoc;
+    protected $galleryLoc = array('url' => null, 'title' => null);
     /**
-     * @var string
+     * @var array
      */
-    protected $price;
+    protected $price = array('price' => null, 'currency' => null);
     /**
      * @var boolean
      */
     protected $requiresSubscription = true;
     /**
-     * @var string
+     * @var array
      */
-    protected $uploader;
+    protected $uploader = array('name' => null, 'info' => null);
     /**
-     * @var string
+     * @var array
      */
-    protected $platform;
+    protected $platform = array('code' => null, 'relationship' => 'allow');
     /**
      * @var boolean
      */
@@ -174,7 +174,7 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getPlayerLoc()
     {
@@ -182,10 +182,10 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @param string $playerLoc
+     * @param array $playerLoc
      * @return $this
      */
-    public function setPlayerLoc($playerLoc)
+    public function setPlayerLoc(array $playerLoc)
     {
         $this->playerLoc = $playerLoc;
 
@@ -345,7 +345,7 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getRestriction()
     {
@@ -353,10 +353,10 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @param string $restriction
+     * @param array $restriction
      * @return $this
      */
-    public function setRestriction($restriction)
+    public function setRestriction(array $restriction)
     {
         $this->restriction = $restriction;
 
@@ -364,7 +364,7 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getGalleryLoc()
     {
@@ -372,10 +372,10 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @param string $galleryLoc
+     * @param array $galleryLoc
      * @return $this
      */
-    public function setGalleryLoc($galleryLoc)
+    public function setGalleryLoc(array $galleryLoc)
     {
         $this->galleryLoc = $galleryLoc;
 
@@ -383,7 +383,7 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getPrice()
     {
@@ -391,10 +391,10 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @param string $price
+     * @param array $price
      * @return $this
      */
-    public function setPrice($price)
+    public function setPrice(array $price)
     {
         $this->price = $price;
 
@@ -421,7 +421,7 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getUploader()
     {
@@ -429,10 +429,10 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @param string $uploader
+     * @param array $uploader
      * @return $this
      */
-    public function setUploader($uploader)
+    public function setUploader(array $uploader)
     {
         $this->uploader = $uploader;
 
@@ -440,7 +440,7 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getPlatform()
     {
@@ -448,10 +448,10 @@ class VideoEntity extends AbstractEntity
     }
 
     /**
-     * @param string $platform
+     * @param array $platform
      * @return $this
      */
-    public function setPlatform($platform)
+    public function setPlatform(array $platform)
     {
         $this->platform = $platform;
 

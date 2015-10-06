@@ -24,8 +24,8 @@ class VideoEntity extends Entity implements DumpEntityInterface
         if (!empty($this->contentLoc)) {
             $videoText .= '<video:content_loc>' . $this->contentLoc . '</video:content_loc>';
         }
-        if (!empty($this->playerLoc)) {
-            $videoText .= '<video:player_loc>' . $this->playerLoc . '</video:player_loc>';
+        if (!empty($this->playerLoc['url'])) {
+            $videoText .= '<video:player_loc allow_embed="' . $this->playerLoc['allowEmbed'] ? 'yes' : 'no' . '"' . !empty($this->playerLoc['autoPlay']) ? ' autoplay="' . $this->playerLoc['autoPlay'] . '"' : '' . '>' . $this->playerLoc['url'] . '</video:player_loc>';
         }
         if (!empty($this->duration)) {
             $videoText .= '<video:duration>' . $this->duration . '</video:duration>';
@@ -49,21 +49,21 @@ class VideoEntity extends Entity implements DumpEntityInterface
         if (!empty($this->category)) {
             $videoText .= '<video:category>' . $this->category . '</video:category>';
         }
-        if (!empty($this->restriction)) {
-            $videoText .= '<video:restriction relationship="allow">' . $this->restriction . '</video:restriction>';
+        if (!empty($this->restriction['countries'])) {
+            $videoText .= '<video:restriction relationship="' . $this->restriction['relationship'] . '">' . $this->restriction['countries'] . '</video:restriction>';
         }
-        if (!empty($this->galleryLoc)) {
-            $videoText .= '<video:gallery_loc>' . $this->galleryLoc . '</video:gallery_loc>';
+        if (!empty($this->galleryLoc['url'])) {
+            $videoText .= '<video:gallery_loc' . !empty($this->galleryLoc['title']) ? ' title="' . $this->galleryLoc['title'] . '"' : '' . '>' . $this->galleryLoc['url'] . '</video:gallery_loc>';
         }
-        if (!empty($this->price)) {
-            $videoText .= '<video:price>' . $this->price . '</video:price>';
+        if (!empty($this->price['price'])) {
+            $videoText .= '<video:price currency="' . $this->price['currency'] . '">' . $this->price['price'] . '</video:price>';
         }
         $videoText .= '<video:requires_subscription>' . $this->requiresSubscription ? 'yes' : 'no' . '</video:requires_subscription>';
-        if (!empty($this->uploader)) {
-            $videoText .= '<video:uploader>' . $this->uploader . '</video:uploader>';
+        if (!empty($this->uploader['name'])) {
+            $videoText .= '<video:uploader' . !empty($this->uploader['info']) ? ' info="' . $this->uploader['info'] . '"' : '' . '>' . $this->uploader['name'] . '</video:uploader>';
         }
-        if (!empty($this->platform)) {
-            $videoText .= '<video:platform>' . $this->platform . '</video:platform>';
+        if (!empty($this->platform['code'])) {
+            $videoText .= '<video:platform relationship="' . $this->platform['relationship'] . '">' . $this->platform['code'] . '</video:platform>';
         }
         $videoText .= '<video:live>' . $this->live ? 'yes' : 'no' . '</video:live>';
         $videoText .= '</video:video>';
