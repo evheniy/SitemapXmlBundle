@@ -305,7 +305,7 @@ class VideoEntity extends Entity implements ValidateEntityInterface
     /**
      * @var array
      */
-    protected static $territories = array(
+    public static $territories = array(
         'AC',
         'AD',
         'AE',
