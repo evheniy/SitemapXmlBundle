@@ -692,7 +692,7 @@ class VideoEntity extends Entity implements ValidateEntityInterface
                     function ($value) {
                     return !in_array(
                         trim($value),
-                        self::$territories
+                        VideoEntity::$territories
                     );
                     }
                 )
@@ -718,7 +718,7 @@ class VideoEntity extends Entity implements ValidateEntityInterface
     protected function validatePrice()
     {
         if (!empty($this->price['price'])) {
-            if (empty($this->price['currency']) || !in_array($this->price['currency'], self::$currencies)) {
+            if (empty($this->price['currency']) || !in_array($this->price['currency'], VideoEntity::$currencies)) {
                 throw new ValidateEntityException('"Price[currency]" field must be valid currency code!');
             }
         }
