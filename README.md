@@ -7,6 +7,11 @@ This bundle provides sitemap.xml generator for Symfony2
 
 [![Build Status](https://travis-ci.org/evheniy/SitemapXmlBundle.svg)](https://travis-ci.org/evheniy/SitemapXmlBundle)
 
+[![Coverage Status](https://coveralls.io/repos/evheniy/SitemapXmlBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/evheniy/SitemapXmlBundle?branch=master)
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/?branch=master)  [![Build Status](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/build-status/master)
+
+
 Installation
 ------------
 
