@@ -21,7 +21,7 @@ env:
   - SYMFONY_VERSION=2.6.*
   - SYMFONY_VERSION=2.7.*
 
-install: travis_retry composer install --no-interaction --prefer-source
+#install: travis_retry composer install --no-interaction --prefer-source
 
 before_script:
   - composer require symfony/symfony:${SYMFONY_VERSION} --no-update
