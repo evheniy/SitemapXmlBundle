@@ -25,19 +25,19 @@ class VideoEntity extends Entity implements DumpEntityInterface
             $videoText .= '<video:content_loc>' . $this->contentLoc . '</video:content_loc>';
         }
         if (!empty($this->playerLoc['url'])) {
-            $videoText .= '<video:player_loc allow_embed="' . $this->playerLoc['allowEmbed'] ? 'yes' : 'no' . '"' . !empty($this->playerLoc['autoPlay']) ? ' autoplay="' . $this->playerLoc['autoPlay'] . '"' : '' . '>' . $this->playerLoc['url'] . '</video:player_loc>';
+            $videoText .= '<video:player_loc' . (isset($this->playerLoc['allowEmbed']) ? ' allow_embed="' . ($this->playerLoc['allowEmbed'] ? 'yes' : 'no') . '"' : '') . (!empty($this->playerLoc['autoPlay']) ? ' autoplay="' . $this->playerLoc['autoPlay'] . '"' : '') . '>' . $this->playerLoc['url'] . '</video:player_loc>';
         }
         if (!empty($this->duration)) {
-            $videoText .= '<video:duration>' . $this->duration . '</video:duration>';
+            $videoText .= '<video:duration>' . intval($this->duration) . '</video:duration>';
         }
         if (!empty($this->expirationDate)) {
             $videoText .= '<video:expiration_date>' . $this->expirationDate->format('c') . '</video:expiration_date>';
         }
         if (!empty($this->rating)) {
-            $videoText .= '<video:rating>' . $this->rating . '</video:rating>';
+            $videoText .= '<video:rating>' . number_format(floatval($this->rating), 1) . '</video:rating>';
         }
         if (!empty($this->viewCount)) {
-            $videoText .= '<video:view_count>' . $this->viewCount . '</video:view_count>';
+            $videoText .= '<video:view_count>' . intval($this->viewCount) . '</video:view_count>';
         }
         if (!empty($this->publicationDate)) {
             $videoText .= '<video:publication_date>' . $this->publicationDate->format('c') . '</video:publication_date>';
@@ -47,13 +47,13 @@ class VideoEntity extends Entity implements DumpEntityInterface
             $videoText .= '<video:tag>' . $this->tag . '</video:tag>';
         }
         if (!empty($this->category)) {
-            $videoText .= '<video:category>' . $this->category . '</video:category>';
+            $videoText .= '<video:category>' . substr($this->category, 0, 255) . '</video:category>';
         }
         if (!empty($this->restriction['countries'])) {
             $videoText .= '<video:restriction relationship="' . $this->restriction['relationship'] . '">' . $this->restriction['countries'] . '</video:restriction>';
         }
         if (!empty($this->galleryLoc['url'])) {
-            $videoText .= '<video:gallery_loc' . !empty($this->galleryLoc['title']) ? ' title="' . $this->galleryLoc['title'] . '"' : '' . '>' . $this->galleryLoc['url'] . '</video:gallery_loc>';
+            $videoText .= '<video:gallery_loc' . (!empty($this->galleryLoc['title']) ? ' title="' . $this->galleryLoc['title'] . '"' : '') . '>' . $this->galleryLoc['url'] . '</video:gallery_loc>';
         }
         if (!empty($this->price['price'])) {
             $videoText .= '<video:price currency="' . $this->price['currency'] . '">' . $this->price['price'] . '</video:price>';
