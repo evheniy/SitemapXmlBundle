@@ -60,7 +60,7 @@ class VideoEntity extends Entity implements DumpEntityInterface
         }
         $videoText .= '<video:requires_subscription>' . ($this->requiresSubscription ? 'yes' : 'no') . '</video:requires_subscription>';
         if (!empty($this->uploader['name'])) {
-            $videoText .= '<video:uploader' . !empty($this->uploader['info']) ? ' info="' . $this->uploader['info'] . '"' : '' . '>' . $this->uploader['name'] . '</video:uploader>';
+            $videoText .= '<video:uploader' . (!empty($this->uploader['info']) ? ' info="' . $this->uploader['info'] . '"' : '') . '>' . $this->uploader['name'] . '</video:uploader>';
         }
         if (!empty($this->platform['code'])) {
             $videoText .= '<video:platform relationship="' . $this->platform['relationship'] . '">' . $this->platform['code'] . '</video:platform>';

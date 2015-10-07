@@ -134,8 +134,8 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testDumpRestriction()
     {
-        $this->markTestIncomplete();
-        $this->assertRegExp('//', $this->videoEntity->getXml());
+        $this->videoEntity->setRestriction(array('countries' => 'GB', 'relationship' => 'allow'));
+        $this->assertRegExp('/\<video\:restriction\ relationship\=\"allow\"\>GB\<\/video\:restriction\>/', $this->videoEntity->getXml());
     }
 
     /**
@@ -143,8 +143,10 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testDumpGalleryLoc()
     {
-        $this->markTestIncomplete();
-        $this->assertRegExp('//', $this->videoEntity->getXml());
+        $this->videoEntity->setGalleryLoc(array('url' => 'http://test.com/'));
+        $this->assertRegExp('/\<video\:gallery\_loc\>http\:\/\/test\.com\/\<\/video\:gallery\_loc\>/', $this->videoEntity->getXml());
+        $this->videoEntity->setGalleryLoc(array('url' => 'http://test.com/', 'title' => 'test'));
+        $this->assertRegExp('/\<video\:gallery\_loc\ title\=\"test\"\>http\:\/\/test\.com\/\<\/video\:gallery\_loc\>/', $this->videoEntity->getXml());
     }
 
     /**
@@ -152,8 +154,8 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testDumpPrice()
     {
-        $this->markTestIncomplete();
-        $this->assertRegExp('//', $this->videoEntity->getXml());
+        $this->videoEntity->setPrice(array('price' => '123', 'currency' => 'USD'));
+        $this->assertRegExp('/\<video\:price\ currency\=\"USD\"\>123\<\/video\:price\>/', $this->videoEntity->getXml());
     }
 
     /**
@@ -161,8 +163,10 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testDumpUploader()
     {
-        $this->markTestIncomplete();
-        $this->assertRegExp('//', $this->videoEntity->getXml());
+        $this->videoEntity->setUploader(array('name' => 'testName'));
+        $this->assertRegExp('/\<video\:uploader\>testName\<\/video\:uploader\>/', $this->videoEntity->getXml());
+        $this->videoEntity->setUploader(array('name' => 'testName', 'info' => 'testInfo'));
+        $this->assertRegExp('/\<video\:uploader\ info\=\"testInfo\"\>testName\<\/video\:uploader\>/', $this->videoEntity->getXml());
     }
 
     /**
@@ -170,7 +174,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testDumpPlatform()
     {
-        $this->markTestIncomplete();
-        $this->assertRegExp('//', $this->videoEntity->getXml());
+        $this->videoEntity->setPlatform(array('code' => 'WEB', 'relationship' => 'allow'));
+        $this->assertRegExp('/\<video\:platform\ relationship\=\"allow\"\>WEB\<\/video\:platform\>/', $this->videoEntity->getXml());
     }
 }
