@@ -94,14 +94,120 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
+    public function testValidateRating()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setRating(12);
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Rating" field should be between 0.0 and 1.0!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateTag()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setTag('a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a');
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Tag" field can have 32 words maximum!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateCategory()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setCategory(
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a' .
+                'a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a'
+            );
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Category" field value should be a string no longer than 256 characters!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
     public function testValidatePlayerLoc()
     {
         $this->videoEntity
             ->setThumbnailLoc('http://site.com/video.png')
             ->setTitle('test')
             ->setDescription('test')
-            ->setPlayerLoc(array('url' => 'test'));
+            ->setPlayerLoc(array('url' => 'test', 'allowEmbed' => false));
         $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"PlayerLoc[url]" field must be valid url!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateRestrictionEmptyRelationship()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setRestriction(array('countries' => 'test'));
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Restriction[relationship]" field must be "allow" or "deny"!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateRestrictionWrongRelationship()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setRestriction(array('countries' => 'test', 'relationship' => 'test'));
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Restriction[relationship]" field must be "allow" or "deny"!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateRestrictionWrongCountries()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setRestriction(array('countries' => 'test', 'relationship' => 'allow'));
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Restriction[countries]" field must be valid country code like "US", "GB"...');
         $this->videoEntity->validate();
     }
 
@@ -117,6 +223,96 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
             ->setContentLoc('http://site.com/video.avi')
             ->setGalleryLoc(array('url' => 'test', 'title' => null));
         $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"GalleryLoc[url]" field must be valid url!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidatePriceEmptyCurrency()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setPrice(array('price' => 123));
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Price[currency]" field must be valid currency code!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidatePriceWrongCurrency()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setPrice(array('price' => 123, 'currency' => 'test'));
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Price[currency]" field must be valid currency code!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidateUploader()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setUploader(array('name' => 'test', 'info' => 'test'));
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Uploader[info]" field must be valid url!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidatePlatformEmptyRelationship()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setPlatform(array('code' => 'test'));
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Platform[relationship]" field must be "allow" or "deny"!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidatePlatformWrongRelationship()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setPlatform(array('code' => 'test', 'relationship' => 'test'));
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Platform[relationship]" field must be "allow" or "deny"!');
+        $this->videoEntity->validate();
+    }
+
+    /**
+     *
+     */
+    public function testValidatePlatformWrongCode()
+    {
+        $this->videoEntity
+            ->setThumbnailLoc('http://site.com/video.png')
+            ->setTitle('test')
+            ->setDescription('test')
+            ->setContentLoc('http://site.com/video.avi')
+            ->setPlatform(array('code' => 'test', 'relationship' => 'allow'));
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Platform[code]" field must be "WEB", "MOBILE", "TV"!');
         $this->videoEntity->validate();
     }
 

@@ -572,33 +572,13 @@ class VideoEntity extends Entity implements ValidateEntityInterface
      */
     public function validate()
     {
-        if (empty($this->thumbnailLoc)) {
-            throw new ValidateEntityException('"ThumbnailLoc" field must be not empty!');
-        }
-        if (filter_var($this->thumbnailLoc, FILTER_VALIDATE_URL) === false) {
-            throw new ValidateEntityException('"ThumbnailLoc" field must be valid url!');
-        }
-        if (empty($this->title)) {
-            throw new ValidateEntityException('"Title" field must be not empty!');
-        }
-        if (empty($this->description)) {
-            throw new ValidateEntityException('"Description" field must be not empty!');
-        }
-        if (empty($this->contentLoc) && empty($this->playerLoc['url'])) {
-            throw new ValidateEntityException('You must specify at least one of "ContentLoc" or "PlayerLoc"');
-        }
-        if (!empty($this->contentLoc) && filter_var($this->contentLoc, FILTER_VALIDATE_URL) === false) {
-            throw new ValidateEntityException('A URL pointing to the actual video media file. This file should be in .mpg, .mpeg, .mp4, .m4v, .mov, .wmv, .asf, .avi, .ra, .ram, .rm, .flv, or other video file format.');
-        }
-        if (!empty($this->rating) && !$this->isValidRating()) {
-            throw new ValidateEntityException('"Rating" field should be between 0.0 and 1.0!');
-        }
-        if (!empty($this->tag) && str_word_count($this->tag, 0) > 32) {
-            throw new ValidateEntityException('"Tag" field can have 32 words maximum!');
-        }
-        if (!empty($this->category) && strlen($this->category) > 256) {
-            throw new ValidateEntityException('"Category" field value should be a string no longer than 256 characters!');
-        }
+        $this->validateThumbnailLoc();
+        $this->validateTitle();
+        $this->validateDescription();
+        $this->validateContentLoc();
+        $this->validateRating();
+        $this->validateTag();
+        $this->validateCategory();
         $this->validatePlayerLoc();
         $this->validateRestriction();
         $this->validateGalleryLoc();
@@ -612,21 +592,86 @@ class VideoEntity extends Entity implements ValidateEntityInterface
     /**
      * @throws ValidateEntityException
      */
+    protected function validateThumbnailLoc()
+    {
+        if (empty($this->thumbnailLoc)) {
+            throw new ValidateEntityException('"ThumbnailLoc" field must be not empty!');
+        }
+        if (filter_var($this->thumbnailLoc, FILTER_VALIDATE_URL) === false) {
+            throw new ValidateEntityException('"ThumbnailLoc" field must be valid url!');
+        }
+    }
+
+    /**
+     * @throws ValidateEntityException
+     */
+    protected function validateTitle()
+    {
+        if (empty($this->title)) {
+            throw new ValidateEntityException('"Title" field must be not empty!');
+        }
+    }
+
+    /**
+     * @throws ValidateEntityException
+     */
+    protected function validateDescription()
+    {
+        if (empty($this->description)) {
+            throw new ValidateEntityException('"Description" field must be not empty!');
+        }
+    }
+
+    /**
+     * @throws ValidateEntityException
+     */
+    protected function validateContentLoc()
+    {
+        if (empty($this->contentLoc) && empty($this->playerLoc['url'])) {
+            throw new ValidateEntityException('You must specify at least one of "ContentLoc" or "PlayerLoc"');
+        }
+        if (!empty($this->contentLoc) && filter_var($this->contentLoc, FILTER_VALIDATE_URL) === false) {
+            throw new ValidateEntityException('A URL pointing to the actual video media file. This file should be in .mpg, .mpeg, .mp4, .m4v, .mov, .wmv, .asf, .avi, .ra, .ram, .rm, .flv, or other video file format.');
+        }
+    }
+
+    /**
+     * @throws ValidateEntityException
+     */
+    protected function validateRating()
+    {
+        if (!empty($this->rating) && !(($this->rating >= 0.0) && ($this->rating <= 1.0))) {
+            throw new ValidateEntityException('"Rating" field should be between 0.0 and 1.0!');
+        }
+    }
+
+    /**
+     * @throws ValidateEntityException
+     */
+    protected function validateTag()
+    {
+        if (!empty($this->tag) && str_word_count($this->tag, 0) > 32) {
+            throw new ValidateEntityException('"Tag" field can have 32 words maximum!');
+        }
+    }
+    /**
+     * @throws ValidateEntityExceptions
+     */
+    protected function validateCategory()
+    {
+        if (!empty($this->category) && strlen($this->category) > 256) {
+            throw new ValidateEntityException('"Category" field value should be a string no longer than 256 characters!');
+        }
+    }
+    /**
+     * @throws ValidateEntityException
+     */
     protected function validatePlayerLoc()
     {
         if (!empty($this->playerLoc['url']) && filter_var($this->playerLoc['url'], FILTER_VALIDATE_URL) === false) {
             throw new ValidateEntityException('"PlayerLoc[url]" field must be valid url!');
         }
         $this->playerLoc['allowEmbed'] = boolval($this->playerLoc['allowEmbed']);
-    }
-
-    /**
-     * @return bool
-     */
-    protected function isValidRating()
-    {
-
-        return ($this->rating >= 0.0) && ($this->rating <= 1.0);
     }
 
     /**
