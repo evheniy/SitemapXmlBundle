@@ -6,10 +6,9 @@ This bundle provides sitemap.xml generator for Symfony2
 [![Latest Stable Version](https://poser.pugx.org/evheniy/sitemap-xml-bundle/v/stable)](https://packagist.org/packages/evheniy/sitemap-xml-bundle) [![Total Downloads](https://poser.pugx.org/evheniy/sitemap-xml-bundle/downloads)](https://packagist.org/packages/evheniy/sitemap-xml-bundle) [![Latest Unstable Version](https://poser.pugx.org/evheniy/sitemap-xml-bundle/v/unstable)](https://packagist.org/packages/evheniy/sitemap-xml-bundle) [![License](https://poser.pugx.org/evheniy/sitemap-xml-bundle/license)](https://packagist.org/packages/evheniy/sitemap-xml-bundle)
 
 [![Build Status](https://travis-ci.org/evheniy/SitemapXmlBundle.svg)](https://travis-ci.org/evheniy/SitemapXmlBundle)
-
 [![Coverage Status](https://coveralls.io/repos/evheniy/SitemapXmlBundle/badge.svg?branch=master&service=github)](https://coveralls.io/github/evheniy/SitemapXmlBundle?branch=master)
-
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/?branch=master)  [![Build Status](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/evheniy/SitemapXmlBundle/build-status/master)
 
 
 Installation
