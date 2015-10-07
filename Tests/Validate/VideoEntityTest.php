@@ -326,7 +326,11 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
             ->setTitle('test')
             ->setDescription('test')
             ->setContentLoc('http://site.com/video.avi')
-            ->setGalleryLoc(array('url' => 'http://site.com/video.png', 'title' => null));
+            ->setRestriction(array('countries' => 'GB', 'relationship' => 'allow'))
+            ->setGalleryLoc(array('url' => 'http://site.com/video.png', 'title' => null))
+            ->setPrice(array('price' => 123, 'currency' => 'USD'))
+            ->setUploader(array('name' => 'test', 'info' => 'http://site.com/video.png'))
+            ->setPlatform(array('code' => 'WEB', 'relationship' => 'allow'));
         $this->assertEquals($this->videoEntity->validate(), $this->videoEntity);
     }
 }
