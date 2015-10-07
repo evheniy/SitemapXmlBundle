@@ -5,6 +5,8 @@ This bundle provides sitemap.xml generator for Symfony2
 
 [![Latest Stable Version](https://poser.pugx.org/evheniy/sitemap-xml-bundle/v/stable)](https://packagist.org/packages/evheniy/sitemap-xml-bundle) [![Total Downloads](https://poser.pugx.org/evheniy/sitemap-xml-bundle/downloads)](https://packagist.org/packages/evheniy/sitemap-xml-bundle) [![Latest Unstable Version](https://poser.pugx.org/evheniy/sitemap-xml-bundle/v/unstable)](https://packagist.org/packages/evheniy/sitemap-xml-bundle) [![License](https://poser.pugx.org/evheniy/sitemap-xml-bundle/license)](https://packagist.org/packages/evheniy/sitemap-xml-bundle)
 
+[![Build Status](https://travis-ci.org/evheniy/SitemapXmlBundle.svg)](https://travis-ci.org/evheniy/SitemapXmlBundle)
+
 Installation
 ------------
 

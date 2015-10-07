@@ -301,7 +301,7 @@ class VideoEntity extends AbstractEntity
      */
     public function setFamilyFriendly($familyFriendly = true)
     {
-        $this->familyFriendly = boolval($familyFriendly);
+        $this->familyFriendly = (bool) $familyFriendly;
 
         return $this;
     }
@@ -415,7 +415,7 @@ class VideoEntity extends AbstractEntity
      */
     public function setRequiresSubscription($requiresSubscription = true)
     {
-        $this->requiresSubscription = boolval($requiresSubscription);
+        $this->requiresSubscription = (bool) $requiresSubscription;
 
         return $this;
     }
@@ -472,7 +472,7 @@ class VideoEntity extends AbstractEntity
      */
     public function setLive($live = false)
     {
-        $this->live = boolval($live);
+        $this->live = (bool) $live;
 
         return $this;
     }
