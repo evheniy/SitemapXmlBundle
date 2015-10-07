@@ -671,7 +671,7 @@ class VideoEntity extends Entity implements ValidateEntityInterface
         if (!empty($this->playerLoc['url']) && filter_var($this->playerLoc['url'], FILTER_VALIDATE_URL) === false) {
             throw new ValidateEntityException('"PlayerLoc[url]" field must be valid url!');
         }
-        $this->playerLoc['allowEmbed'] = boolval($this->playerLoc['allowEmbed']);
+        $this->playerLoc['allowEmbed'] = (bool) $this->playerLoc['allowEmbed'];
     }
 
     /**

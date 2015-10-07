@@ -41,17 +41,15 @@ class NewsEntity extends Entity implements ValidateEntityInterface
      */
     protected function isValidGenres()
     {
-        return !boolval(
-            count(
-                array_filter(
-                    explode(',', $this->genres),
-                    function ($value) {
-                        return !in_array(
-                            trim($value),
-                            array('PressRelease', 'Satire', 'Blog', 'OpEd', 'Opinion', 'UserGenerated')
-                        );
-                    }
-                )
+        return !count(
+            array_filter(
+                explode(',', $this->genres),
+                function ($value) {
+                    return !in_array(
+                        trim($value),
+                        array('PressRelease', 'Satire', 'Blog', 'OpEd', 'Opinion', 'UserGenerated')
+                    );
+                }
             )
         );
     }
