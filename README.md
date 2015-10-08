@@ -106,14 +106,15 @@ The last step
 Documentation
 -------------
 
-TODO:
-
 - [Service manager][6]
-- example with simple sitemap
-- describe all entities
-- describe service manager
-- [describe dump entity][5]
-- describe adding domain as important action
+- [Dump manager][7]
+- [Dump entity][5]
+- [Site map index entity][8]
+- [Site map entity][9]
+- [Location entity][10]
+- [Image entity][11]
+- [Video entity][12]
+- [News entity][13]
 
 
 License
@@ -133,3 +134,10 @@ This bundle is under the [MIT][3] license.
 [4]:  https://support.google.com/webmasters/answer/183668
 [5]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/dump_entity.md
 [6]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/service_manager.md
+[7]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/dump_manager.md
+[8]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/sitemap_index_entity.md
+[9]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/sitemap_entity.md
+[10]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/location_entity.md
+[11]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/image_entity.md
+[12]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/video_entity.md
+[13]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/news_entity.md
