@@ -1,0 +1,5 @@
+SitemapXmlBundle
+=================
+
+Sitemap index entity
+--------------------

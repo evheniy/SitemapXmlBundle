@@ -1,0 +1,5 @@
+SitemapXmlBundle
+=================
+
+Image entity
+------------

@@ -1,0 +1,5 @@
+SitemapXmlBundle
+=================
+
+Location entity
+---------------
