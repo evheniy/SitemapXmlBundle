@@ -107,6 +107,8 @@ Documentation
 -------------
 
 TODO:
+
+- [Service manager][6]
 - example with simple sitemap
 - describe all entities
 - describe service manager
@@ -130,3 +132,4 @@ This bundle is under the [MIT][3] license.
 [3]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/meta/LICENSE
 [4]:  https://support.google.com/webmasters/answer/183668
 [5]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/dump_entity.md
+[6]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/service_manager.md
