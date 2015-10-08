@@ -35,6 +35,36 @@ AppKernel:
 
 You should set bundle before main bundle (in our example it's AppBundle) and extend SiteMapDumpCommand ( setEntities() method )
 
+The easy way to create sitemap:
+
+    <?php
+    
+    namespace AppBundle\Command;
+    
+    use Evheniy\SitemapXmlBundle\Command\SiteMapDumpCommand as Command;
+    
+    class SiteMapDumpCommand extends Command
+    {
+        /**
+         *
+         */
+        protected function setEntities()
+        {
+            $this->siteMapEntity = $this->serviceManager->createSiteMapEntity();
+            $this->dumpEntity->setDomain('site.com');
+            foreach ($pages as $page) {
+                $this->siteMapEntity
+                    ->addLocation(
+                        $this->serviceManager->createLocationEntity()
+                            ->setLocation($page['url'])
+                            ->setLastmod(new \DateTime($page['date']))
+                    );
+            }
+        }
+    }
+
+If there are more than 50 000 links you should use sitemap index:
+
     <?php
 
     namespace AppBundle\Command;
