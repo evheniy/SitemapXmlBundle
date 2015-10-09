@@ -8,7 +8,8 @@ Dump manager is facade for dumping files.
 
 You can get dump manager from [service manager][1].
 
-Methods:
+Methods
+-------
 
 |   Method             |   Description          |
 |----------------------|------------------------|

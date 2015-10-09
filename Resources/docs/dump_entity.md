@@ -6,7 +6,8 @@ Dump entity
 
 Dump entity helps with dumping sitemap to file in project web directory.
 
-Methods:
+Methods
+-------
 
 |   Setter                  |   Getter                  |   Required   |   Description                                                                                                                                                       |
 |---------------------------|---------------------------|:------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|

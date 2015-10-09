@@ -8,13 +8,14 @@ If you have many sitemaps, you can use a sitemaps index file as a way to submit 
 
 You can read more about it from [Google help][5].
 
-Methods:
+Methods
+-------
 
 |   Setter       |   Getter                 |   Required   |   Description                           |
 |----------------|--------------------------|:------------:|-----------------------------------------|
 |   addSiteMap   |   getSiteMapCollection   |       +      |   Set sitemap entity to sitemap index   |
 
-For creating sitemap and sitemap index entities you should use [Service Manager][6].
+For creating [sitemap][7] and sitemap index entities you should use [Service Manager][6].
 
 
 License
@@ -34,3 +35,4 @@ This bundle is under the [MIT][3] license.
 [4]:  https://support.google.com/webmasters/answer/183668
 [5]:  https://support.google.com/webmasters/answer/75712
 [6]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/service_manager.md
+[7]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/sitemap_entity.md

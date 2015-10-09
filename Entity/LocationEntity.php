@@ -10,7 +10,7 @@ use Evheniy\SitemapXmlBundle\Collection\NewsCollection;
  * Class LocationEntity
  * @package Evheniy\SitemapXmlBundle\Entity
  * https://support.google.com/webmasters/answer/35653
- * https://support.google.com/webmasters/answer/6082207?vid=1-635786063884135235-1700809274
+ * https://support.google.com/webmasters/answer/6082207
  */
 class LocationEntity extends AbstractEntity
 {

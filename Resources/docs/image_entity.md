@@ -10,6 +10,9 @@ Image sitemap information helps Google discover images that we might not otherwi
 
 You can read more about it from [Google help][5].
 
+Methods
+-------
+
 |   Setter           |   Getter           |   Required   |   Description                           |
 |--------------------|--------------------|:------------:|-----------------------------------------|
 |   setLocation      |   getLocation      |       +      |   The URL of the image. In some cases, the image URL may not be on the same domain as your main site. This is fine, as long as both domains are verified in Search Console. If, for example, you use a content delivery network such as Google Sites to host your images, make sure that the hosting site is verified in Search Console. In addition, make sure that your robots.txt file doesn’t disallow the crawling of any content you want indexed.   |

@@ -15,7 +15,8 @@ Or
     $serviceManager = new Evheniy\SitemapXmlBundle\Service\ServiceManager(); 
 
 
-Methods:
+Methods
+-------
 
 - [createSiteMapIndexEntity][1]
 - [createSiteMapEntity][2]
