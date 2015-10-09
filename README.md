@@ -45,9 +45,6 @@ The easy way to create sitemap:
     
     class SiteMapDumpCommand extends Command
     {
-        /**
-         *
-         */
         protected function setEntities()
         {
             $this->siteMapEntity = $this->serviceManager->createSiteMapEntity();
@@ -77,25 +74,15 @@ If there are more than 50 000 links you should use sitemap index:
         {
             $this->siteMapIndexEntity = $this->serviceManager->createSiteMapIndexEntity();
             $this->dumpEntity->setDomain('site.com');
-            $this->siteMapIndexEntity
-                ->addSiteMap(
-                    $this->serviceManager->createSiteMapEntity()
-                        ->addLocation(
-                            $this->serviceManager->createLocationEntity()
-                                ->setLocation('http://site.com/page1.html')
-                                ->setLastmod(new \DateTime())
-                        )
-                        ->addLocation(
-                            $this->serviceManager->createLocationEntity()
-                                ->setLocation('http://site.com/page2.html')
-                                ->setLastmod(new \DateTime())
-                                ->addImage(
-                                    $this->serviceManager->createImageEntity()
-                                        ->setLocation('http://site.com/logo.png')
-                                        ->setTitle('Logo')
-                                )
-                        )
+            $siteMapEntity = $this->serviceManager->createSiteMapEntity();
+            foreach ($pages as $page) {
+                $siteMapEntity->addLocation(
+                    $this->serviceManager->createLocationEntity()
+                        ->setLocation($page['url'])
+                        ->setLastmod(new \DateTime($page['date']))
                 );
+            }
+            $this->siteMapIndexEntity->addSiteMap($siteMapEntity);
         }
     }
 
@@ -105,6 +92,30 @@ The last step
 
 Documentation
 -------------
+
+SitemapXmlBundle made by using fluent interface:
+
+    $this->siteMapIndexEntity
+        ->addSiteMap(
+            $this->serviceManager->createSiteMapEntity()
+                ->addLocation(
+                    $this->serviceManager->createLocationEntity()
+                        ->setLocation('http://site.com/page1.html')
+                        ->setLastmod(new \DateTime())
+                )
+                ->addLocation(
+                    $this->serviceManager->createLocationEntity()
+                        ->setLocation('http://site.com/page2.html')
+                        ->setLastmod(new \DateTime())
+                        ->addImage(
+                            $this->serviceManager->createImageEntity()
+                                ->setLocation('http://site.com/logo.png')
+                                ->setTitle('Logo')
+                        )
+                )
+        );
+
+More details:
 
 - [Service manager][6]
 - [Dump manager][7]

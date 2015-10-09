@@ -26,6 +26,17 @@ Methods:
 - [createDumpManager][7]
 - [createDumpEntity][8]
 
+License
+-------
+
+This bundle is under the [MIT][11] license.
+
+[Документация на русском языке][9]
+
+[Demo][10]
+
+[Build a sitemap][12]
+
 [1]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/sitemap_index_entity.md
 [2]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/sitemap_entity.md
 [3]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/location_entity.md
@@ -34,3 +45,7 @@ Methods:
 [6]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/news_entity.md
 [7]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/dump_manager.md
 [8]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/docs/dump_entity.md
+[9]:  http://makedev.org/articles/symfony/bundles/sitemap_xml_bundle.html
+[10]:  http://makedev.org/sitemap.xml
+[11]:  https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/meta/LICENSE
+[12]:  https://support.google.com/webmasters/answer/183668
