@@ -8,7 +8,7 @@ use Evheniy\SitemapXmlBundle\Exception\ValidateEntityException;
 /**
  * Class ImageEntity
  * @package Evheniy\SitemapXmlBundle\Validate
- * https://support.google.com/webmasters/answer/178636?vid=1-635786063884135235-1700809274
+ * https://support.google.com/webmasters/answer/178636
  */
 class ImageEntity extends Entity implements ValidateEntityInterface
 {

@@ -5,7 +5,7 @@ namespace Evheniy\SitemapXmlBundle\Entity;
 /**
  * Class ImageEntity
  * @package Evheniy\SitemapXmlBundle\Entity
- * https://support.google.com/webmasters/answer/178636?vid=1-635786063884135235-1700809274
+ * https://support.google.com/webmasters/answer/178636
  */
 class ImageEntity extends AbstractEntity
 {

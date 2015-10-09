@@ -8,7 +8,7 @@ use Evheniy\SitemapXmlBundle\Validate\ImageEntity as Entity;
  * Class ImageEntity
  *
  * @package Evheniy\SitemapXmlBundle\Dump
- * https://support.google.com/webmasters/answer/178636?vid=1-635786063884135235-1700809274
+ * https://support.google.com/webmasters/answer/178636
  */
 class ImageEntity extends Entity implements DumpEntityInterface
 {
