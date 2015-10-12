@@ -23,6 +23,30 @@ Methods
 
 For creating image entity you should use [Service Manager][6].
 
+Example
+-------
+
+    $imageEntity = $this->serviceManager->createImageEntity();
+    $imageEntity->setLocation('http://test.com/favicon.ico');
+    
+Or with all fields:
+
+    $imageEntity = $this->serviceManager->createImageEntity();
+    $imageEntity->setLocation('http://test.com/favicon.ico');
+    $imageEntity->setCaption('Site icon');
+    $imageEntity->setGeoLocation('Limerick, Ireland');
+    $imageEntity->setTitle('Site icon');
+    $imageEntity->setLicense('https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/meta/LICENSE');
+    
+Fluent interface:
+
+    $imageEntity = $this->serviceManager->createImageEntity()
+        ->setLocation('http://test.com/favicon.ico')
+        ->setCaption('Site icon')
+        ->setGeoLocation('Limerick, Ireland')
+        ->setTitle('Site icon')
+        ->setLicense('https://github.com/evheniy/SitemapXmlBundle/blob/master/Resources/meta/LICENSE');
+
 License
 -------
 

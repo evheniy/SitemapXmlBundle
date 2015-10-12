@@ -21,6 +21,35 @@ Methods
 
 Domain and protocol use for generating sitemap urls inside sitemap index if [sitemap entity location][5] is empty.
 
+Example
+-------
+
+    $dumpEntity = $this->serviceManager->createDumpEntity();
+    $dumpEntity->setWebDir(realpath($container->get('kernel')->getRootDir() . '/../web'));
+    
+Or with all fields:
+    
+    $dumpEntity = $this->serviceManager->createDumpEntity();
+    $dumpEntity->setWebDir(realpath($container->get('kernel')->getRootDir() . '/../web'));
+    $dumpEntity->setPath('/sitemap');
+    $dumpEntity->setCarefully(true);
+    $dumpEntity->setProtocol('https');
+    $dumpEntity->setDomain('site.com');
+    
+    $dumpEntity->setSiteMapEntity($siteMapEntity);
+    or
+    $dumpEntity->setSiteMapIndexEntity($siteMapIndexEntity);
+    
+Fluent interface:
+    
+    $dumpEntity = $this->serviceManager->createDumpEntity()
+        ->setWebDir(realpath($container->get('kernel')->getRootDir() . '/../web'))
+        ->setPath('/sitemap')
+        ->setCarefully(true)
+        ->setProtocol('https')
+        ->setDomain('site.com')
+        ->setSiteMapEntity($siteMapEntity);
+
 License
 -------
 

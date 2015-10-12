@@ -17,6 +17,15 @@ Methods
 
 For creating [sitemap][7] and sitemap index entities you should use [Service Manager][6].
 
+Example
+-------
+
+    $siteMapIndexEntity = $this->serviceManager->createSiteMapIndexEntity();
+    $siteMapIndexEntity->addSiteMap($siteMapEntity);
+    
+Fluent interface:
+
+    $siteMapIndexEntity = $this->serviceManager->createSiteMapIndexEntity()->addSiteMap($siteMapEntity);
 
 License
 -------

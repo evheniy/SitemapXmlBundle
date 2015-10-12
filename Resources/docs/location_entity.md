@@ -47,6 +47,36 @@ You should **not** create a feature phone sitemap unless you have a specific **f
 
 [Using non-alphanumeric characters in Sitemap URLs][10]
 
+Example
+-------
+
+    $locationEntity = $this->serviceManager->createLocationEntity();
+    $locationEntity->setLocation('http://test.com/');
+    
+Or with all fields:
+
+    $locationEntity = $this->serviceManager->createLocationEntity();
+    $locationEntity->setLocation('http://test.com/');
+    $locationEntity->setChangefreq('always');
+    $locationEntity->setPriority(0.5);
+    $locationEntity->setLastmod(new \DateTime());
+    $locationEntity->setMobile(false);
+    $locationEntity->addImage($imageEntity);
+    $locationEntity->addVideo($videoEntity);
+    $locationEntity->addNews($newsEntity);
+    
+Fluent interface:
+
+    $locationEntity = $this->serviceManager->createLocationEntity()
+        ->setLocation('http://test.com/')
+        ->setChangefreq('always')
+        ->setPriority(0.5)
+        ->setLastmod(new \DateTime())
+        ->setMobile(false)
+        ->addImage($imageEntity)
+        ->addVideo($videoEntity)
+        ->addNews($newsEntity);
+
 License
 -------
 

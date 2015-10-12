@@ -21,7 +21,8 @@ For dumping you need to create [dump entity][2] (you can get it from [service ma
 
 After you need to create [sitemap entity][3] or [sitemap index entity][4] (if you have mare than 50 000 links, for saving more than one sitemap)
 
-Example: 
+Example
+-------
 
     $serviceManager = $container->get('sitemap');
 
