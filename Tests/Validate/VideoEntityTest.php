@@ -102,7 +102,7 @@ class VideoEntityTest extends \PHPUnit_Framework_TestCase
             ->setDescription('test')
             ->setContentLoc('http://site.com/video.avi')
             ->setRating(12);
-        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Rating" field should be between 0.0 and 1.0!');
+        $this->setExpectedException('Evheniy\SitemapXmlBundle\Exception\ValidateEntityException', '"Rating" field should be between 0.0 and 5.0!');
         $this->videoEntity->validate();
     }
 

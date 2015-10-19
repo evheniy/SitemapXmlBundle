@@ -39,6 +39,59 @@ For creating sitemap entity you should use [Service Manager][6].
 Example
 -------
 
+    $videoEntity = $this->serviceManager->createVideoEntity();
+    $videoEntity->setThumbnailLoc('http://site.com/video.png');
+    $videoEntity->setTitle('Video Name');
+    $videoEntity->setDescription('The description of the video');
+    $videoEntity->setContentLoc('http://site.com/video.avi');
+    
+Or with all fields:
+
+    $videoEntity = $this->serviceManager->createVideoEntity();
+    $videoEntity->setThumbnailLoc('http://site.com/video.png');
+    $videoEntity->setTitle('Video Name');
+    $videoEntity->setDescription('The description of the video');
+    $videoEntity->setContentLoc('http://site.com/video.avi');
+    $videoEntity->setPlayerLoc(array('url' => 'test', 'allowEmbed' => false));
+    $videoEntity->setDuration(100);
+    $videoEntity->setExpirationDate(new \DateTime('2020-01-01'));
+    $videoEntity->setRating(4.2);
+    $videoEntity->setViewCount(12345);
+    $videoEntity->setPublicationDate(new \DateTime());
+    $videoEntity->setFamilyFriendly(true);
+    $videoEntity->setTag('steak, meat, summer');
+    $videoEntity->setCategory('Broiling, Baking');
+    $videoEntity->setRestriction(array('countries' => 'GB', 'relationship' => 'allow'));
+    $videoEntity->setGalleryLoc(array('url' => 'http://site.com/video.png', 'title' => null));
+    $videoEntity->setPrice(array('price' => 123, 'currency' => 'USD'));
+    $videoEntity->setRequiresSubscription(false);
+    $videoEntity->setUploader(array('name' => 'test', 'info' => 'http://site.com/video.png'));
+    $videoEntity->setPlatform(array('code' => 'WEB', 'relationship' => 'allow'));
+    $videoEntity->setLive(false);
+    
+Fluent interface:
+
+    $videoEntity = $this->serviceManager->createVideoEntity()
+        ->setThumbnailLoc('http://site.com/video.png')
+        ->setTitle('Video Name')
+        ->setDescription('The description of the video')
+        ->setContentLoc('http://site.com/video.avi')
+        ->setPlayerLoc(array('url' => 'test', 'allowEmbed' => false))
+        ->setDuration(100)
+        ->setExpirationDate(new \DateTime('2020-01-01'))
+        ->setRating(4.2)
+        ->setViewCount(12345)
+        ->setPublicationDate(new \DateTime())
+        ->setFamilyFriendly(true)
+        ->setTag('steak, meat, summer')
+        ->setCategory('Broiling, Baking')
+        ->setRestriction(array('countries' => 'GB', 'relationship' => 'allow'))
+        ->setGalleryLoc(array('url' => 'http://site.com/video.png', 'title' => null))
+        ->setPrice(array('price' => 123, 'currency' => 'USD'))
+        ->setRequiresSubscription(false)
+        ->setUploader(array('name' => 'test', 'info' => 'http://site.com/video.png'))
+        ->setPlatform(array('code' => 'WEB', 'relationship' => 'allow'))
+        ->setLive(false);
 
 License
 -------

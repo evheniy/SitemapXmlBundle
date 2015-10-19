@@ -640,8 +640,8 @@ class VideoEntity extends Entity implements ValidateEntityInterface
      */
     protected function validateRating()
     {
-        if (!empty($this->rating) && !(($this->rating >= 0.0) && ($this->rating <= 1.0))) {
-            throw new ValidateEntityException('"Rating" field should be between 0.0 and 1.0!');
+        if (!empty($this->rating) && !(($this->rating >= 0.0) && ($this->rating <= 5.0))) {
+            throw new ValidateEntityException('"Rating" field should be between 0.0 and 5.0!');
         }
     }
 
